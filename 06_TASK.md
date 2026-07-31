@@ -62,7 +62,7 @@ Wireframe dibuat sebagai low-fidelity di 08_UI_GUIDE.md, lalu diverifikasi ke pa
 | T-028 | Wireframe SC-10 KPI, SC-11 Jadwal                                | 08 §8    | `[ ]`  |
 | T-029 | Wireframe SC-12–14 Manajemen Pengguna, SC-15 Master Mess         | 08 §8    | `[ ]`  |
 | T-030 | Wireframe SC-16 Laporan, SC-17 Profil, SC-18 Antrean Sinkron     | 08 §8    | `[ ]`  |
-| T-031 | Uji wireframe form ke 2 paramedis; catat temuan dan revisi       | —        | `[ ]`  |
+| T-031 | Uji wireframe form ke 2 paramedis; catat temuan dan revisi       | —        | `[~]`  |
 
 **DoD Fase 2:** Semua layar di 01_USER_FLOW §1 punya wireframe. Paramedis bisa menjelaskan alur pengisian form tanpa dibantu.
 
@@ -98,13 +98,13 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 
 | ID    | Task                                                                                     | Acuan              | Status |
 | ----- | ---------------------------------------------------------------------------------------- | ------------------ | ------ |
-| T-060 | Komponen `FormStepper` — indikator langkah, navigasi maju/mundur                         | 09 §3.2            | `[ ]`  |
+| T-060 | Komponen `FormStepper` — indikator langkah, navigasi maju/mundur                         | 09 §3.2            | `[x]`  |
 | T-061 | Halaman SC-04 Pilih Tipe Observasi — dua kartu besar, touch-friendly                     | 08 §8              | `[~]`  |
 | T-062 | Skema Zod form Mess di `packages/shared` termasuk validasi kondisional `hasFinding`      | 10 BR-OBS-04       | `[x]`  |
-| T-063 | SC-05 Mess Bagian 1: tanggal, komplek, nomor mess, petugas, radio Temuan                 | 00 §5.1 (sumber)   | `[~]`  |
+| T-063 | SC-05 Mess Bagian 1: tanggal, komplek, nomor mess, petugas, radio Temuan                 | 00 §5.1 (sumber)   | `[x]`  |
 | T-064 | SC-05 Mess Bagian 2 (Temuan = Ya): data karyawan, tekanan darah, aktivitas, alasan, foto | 04 §4              | `[~]`  |
 | T-065 | SC-05 Mess Bagian 3 (Temuan = Tidak): foto kondisi mess                                  | 04 §4              | `[ ]`  |
-| T-066 | SC-05 Ringkasan & Kirim, dengan tombol edit per bagian                                   | 01 §4              | `[ ]`  |
+| T-066 | SC-05 Ringkasan & Kirim, dengan tombol edit per bagian                                   | 01 §4              | `[x]`  |
 | T-067 | Skema Zod form Non-Mess termasuk aturan kondisional pet/noise/lainnya                    | 04 §5              | `[ ]`  |
 | T-068 | SC-06 Non-Mess Bagian 1: identitas karyawan + kondisi rumah + lingkungan (22 field)      | 04 §5              | `[ ]`  |
 | T-069 | SC-06 Non-Mess Bagian 2: kuesioner fatigue keluarga (10 field)                           | 04 §5              | `[ ]`  |
