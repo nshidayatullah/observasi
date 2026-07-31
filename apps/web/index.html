@@ -8,6 +8,15 @@
     <title>Observasi Istirahat Karyawan</title>
   </head>
   <body>
+    <script>
+      // Cegah flash mode terang sebelum React mount.
+      // Dibaca dari localStorage, fallback ke prefers-color-scheme.
+      (function () {
+        var stored = localStorage.getItem('darkMode');
+        var dark = stored !== null ? stored === 'true' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) document.documentElement.classList.add('dark');
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

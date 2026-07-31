@@ -95,15 +95,42 @@
 }
 
 /* ── Mode Gelap ───────────────────────────────────────────
-   Wajib — kamar mess digelapkan saat sidak → 08_UI_GUIDE.md §3 */
+   Wajib — kamar mess digelapkan saat sidak → 08_UI_GUIDE.md §3
+   Border & shadow otomatis berbalik karena pakai var(--color-ink-900). */
 :root.dark {
-  --color-ink-50: #0e151d;
-  --color-ink-100: #161e28;
-  --color-ink-200: #24303c;
-  --color-ink-900: #f2f6f9;
-  --color-ink-500: #93a3b3;
+  /* Netral — latar gelap, teks & border terang */
+  --color-white: #1a2332;        /* permukaan kartu & input, bukan putih menyala */
+  --color-ink-50: #0e151d;       /* latar halaman */
+  --color-ink-100: #161e28;      /* latar sekunder */
+  --color-ink-200: #24303c;      /* pemisah ringan */
+  --color-ink-300: #3a4a5c;      /* ikon nonaktif */
+  --color-ink-500: #93a3b3;      /* teks muted */
+  --color-ink-700: #c8d2db;      /* teks sekunder */
+  --color-ink-900: #f2f6f9;      /* teks utama & border universal */
+
+  /* Primer — teal disesuaikan untuk latar gelap */
+  --color-primary-900: #dceff0;
+  --color-primary-700: #8dd4d2;
   --color-primary-500: #2fa0a8;
+  --color-primary-100: #0f2a2d;
+
+  /* Sinyal — amber sedikit lebih lembut di mode gelap */
+  --color-signal-700: #fdf0df;
   --color-signal-500: #f0a050;
+  --color-signal-100: #2d1f0c;
+
+  /* Semantik — saturasi diturunkan agar tidak menyala */
+  --color-success-700: #e1f2e8;
+  --color-success-500: #2d8a4e;
+  --color-success-100: #0f2518;
+
+  --color-danger-700: #fbe6e4;
+  --color-danger-500: #c94040;
+  --color-danger-100: #2a1110;
+
+  /* Offline — ungu untuk status sinkronisasi */
+  --color-offline-500: #9d7bf5;
+  --color-offline-100: #1d1830;
 }
 
 /* ── Reset ─────────────────────────────────────────────── */
