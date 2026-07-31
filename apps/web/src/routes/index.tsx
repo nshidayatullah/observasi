@@ -17,6 +17,7 @@ const ObservationHistoryPage = lazy(
 const ObservationDetailPage = lazy(
   () => import('@/pages/observation-detail/observation-detail-page'),
 );
+const NonMessDetailPage = lazy(() => import('@/pages/observation-detail/non-mess-detail-page'));
 const MessObservationFormPage = lazy(() => import('@/pages/observasi-mess/observasi-mess-page'));
 const NonMessObservationFormPage = lazy(
   () => import('@/pages/observasi-non-mess/observasi-non-mess-page'),
@@ -50,6 +51,7 @@ export function AppRoutes() {
           <Route path="/profil" element={<ProfilePage />} />
           <Route path="/observasi" element={<ObservationHistoryPage />} />
           <Route path="/observasi/mess/:id" element={<ObservationDetailPage />} />
+          <Route path="/observasi/non-mess/:id" element={<NonMessDetailPage />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={[ROLE.PARAMEDIC]} />}>

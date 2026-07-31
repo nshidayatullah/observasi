@@ -10,6 +10,7 @@ type ObservationCardProps = {
   createdAt: string;
   hasFinding: boolean;
   status: ObservationStatus;
+  obsType?: 'MESS' | 'NON_MESS';
 };
 
 const RAIL_COLOR: Record<string, string> = {
@@ -33,12 +34,15 @@ export function ObservationCard({
   createdAt,
   hasFinding,
   status,
+  obsType = 'MESS',
 }: ObservationCardProps) {
   const railKey = status === 'PENDING' ? (hasFinding ? 'finding' : 'pending') : status;
 
+  const href = obsType === 'NON_MESS' ? `/observasi/non-mess/${id}` : `/observasi/mess/${id}`;
+
   return (
     <Link
-      to={`/observasi/mess/${id}`}
+      to={href}
       className="flex rounded-r-md border-2 border-l-0 border-ink-900 bg-white shadow-card transition-shadow active:shadow-none"
     >
       {/* Status Rail — 8px solid, elemen tanda tangan neo-brutalism (§1.3, §5.4) */}

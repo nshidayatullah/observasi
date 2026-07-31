@@ -217,7 +217,36 @@ export const handlers = [
         { error: { code: 'NOT_FOUND', message: 'Tidak ditemukan.' } },
         { status: 404 },
       );
-    return HttpResponse.json({ data: obs });
+    return HttpResponse.json({
+      data: {
+        ...obs,
+        birthDate: '1991-04-17',
+        maritalStatus: 'MENIKAH',
+        yearsOfService: '2019-03',
+        wallType: 'Batako',
+        floorType: 'Keramik',
+        roofType: 'Seng',
+        roomCount: '4',
+        wakeUpTime: '04:30',
+        cleanliness: 'CUKUP',
+        hasPet: true,
+        petDetail: 'Ayam di belakang rumah',
+        hasNoise: true,
+        noiseSource: 'Bengkel las tetangga',
+        sleepDisturbance: 'Suara bising dari jalan raya depan rumah',
+        respondentAge: '34',
+        respondentEducation: 'SMA',
+        respondentRelation: 'Istri',
+        fatigueUnderstanding:
+          'Fatigue adalah kelelahan berlebihan yang bisa menyebabkan kecelakaan kerja. Suami saya sering pulang larut dan kurang tidur.',
+        familyRole:
+          'Keluarga berperan mengingatkan untuk istirahat cukup, menyiapkan makanan bergizi, dan menjaga suasana rumah tenang.',
+        fatigueRisk:
+          'Risikonya sangat besar — bisa kecelakaan saat operasikan alat berat, mengantuk saat bekerja, dan membahayakan diri sendiri dan orang lain.',
+        fatigueCause:
+          'Jam kerja shift malam yang panjang, jarak tempuh ke tempat kerja yang jauh, dan kurangnya waktu istirahat di antara shift.',
+      },
+    });
   }),
 
   http.get(`${BASE}/schedules/roster`, () => {

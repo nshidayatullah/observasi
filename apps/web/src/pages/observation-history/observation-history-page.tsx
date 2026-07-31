@@ -295,6 +295,7 @@ export default function ObservationHistoryPage() {
               createdAt={o.createdAt}
               hasFinding={o.hasFinding}
               status={o.status}
+              obsType={o.type}
             />
           ))}
         </div>
