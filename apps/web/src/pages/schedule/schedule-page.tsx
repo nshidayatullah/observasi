@@ -328,7 +328,9 @@ function SuperadminRoster() {
       )}
 
       {/* Modal detail hari */}
-      {selectedDay ? <DayModal day={selectedDay} onClose={() => setSelectedDay(null)} /> : null}
+      {selectedDay ? (
+        <DayModal day={selectedDay} roster={roster} onClose={() => setSelectedDay(null)} />
+      ) : null}
 
       <Button size="full" className="mt-5" onClick={() => alert('Tambah roster — Fase 5 backend')}>
         <Plus className="h-5 w-5" strokeWidth={1.75} />
@@ -340,7 +342,20 @@ function SuperadminRoster() {
 
 /* ── Modal detail hari ──────────────────────────────────── */
 
-function DayModal({ day, onClose }: { day: CalendarDay; onClose: () => void }) {
+function DayModal({
+  day,
+  roster,
+  onClose,
+}: {
+  day: CalendarDay;
+  roster: RosterEntry[];
+  onClose: () => void;
+}) {
+  const [added, setAdded] = useState<CalendarDay['assignments']>([]);
+  const [paramedicIdx, setParamedicIdx] = useState(0);
+  const [type, setType] = useState<'MESS' | 'NON_MESS'>('MESS');
+  const [location, setLocation] = useState('');
+
   const dateStr = new Date(day.date + 'T00:00:00').toLocaleDateString('id-ID', {
     weekday: 'long',
     day: 'numeric',
@@ -348,13 +363,37 @@ function DayModal({ day, onClose }: { day: CalendarDay; onClose: () => void }) {
     year: 'numeric',
   });
 
+  const all = [...day.assignments, ...added];
+
+  const locations =
+    type === 'MESS'
+      ? ['Mess A', 'Mess B', 'Mess C', 'Mess GL', 'Mess Mandala']
+      : ['Satui', 'Simpang Empat', 'Batu Licin'];
+
+  const add = () => {
+    const p = roster[paramedicIdx];
+    if (!p || !location) return;
+    setAdded([...added, { name: p.paramedicName, type, location }]);
+  };
+
+  const remove = (idx: number, isOriginal: boolean) => {
+    if (isOriginal) {
+      // Remove from day.assignments (via roster mutation)
+      day.assignments.splice(idx, 1);
+      onClose();
+      setTimeout(() => {}, 0); // trigger re-render
+    } else {
+      setAdded(added.filter((_, i) => i !== idx - day.assignments.length));
+    }
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-end justify-center bg-ink-900/60 md:items-center"
       onClick={onClose}
     >
       <div
-        className="flex w-full flex-col gap-4 rounded-t-lg border-t-[3px] border-x-[3px] border-ink-900 bg-white p-5 shadow-sheet md:w-80 md:rounded-lg md:border-[3px] md:shadow-raised"
+        className="flex w-full flex-col gap-4 rounded-t-lg border-t-[3px] border-x-[3px] border-ink-900 bg-white p-5 shadow-sheet md:w-96 md:rounded-lg md:border-[3px] md:shadow-raised"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mx-auto h-1.5 w-10 rounded-full bg-ink-300 md:hidden" />
@@ -369,11 +408,13 @@ function DayModal({ day, onClose }: { day: CalendarDay; onClose: () => void }) {
             <X className="h-4 w-4" strokeWidth={1.75} />
           </button>
         </div>
-        {day.assignments.length === 0 ? (
-          <p className="text-sm text-ink-500">Tidak ada penugasan.</p>
+
+        {/* Daftar penugasan */}
+        {all.length === 0 ? (
+          <p className="text-sm text-ink-500">Belum ada penugasan untuk hari ini.</p>
         ) : (
           <div className="flex flex-col gap-2">
-            {day.assignments.map((a, i) => (
+            {all.map((a, i) => (
               <div
                 key={i}
                 className={cn(
@@ -385,13 +426,71 @@ function DayModal({ day, onClose }: { day: CalendarDay; onClose: () => void }) {
                   <p className="text-sm font-medium text-ink-900">{a.name}</p>
                   <p className="text-xs text-ink-900/70">{a.location}</p>
                 </div>
-                <span className="rounded-sm border-2 border-ink-900 bg-white px-2 py-0.5 text-xs font-medium text-ink-900">
-                  {a.type === 'MESS' ? 'Mess' : 'Kunjungan Rumah'}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="rounded-sm border-2 border-ink-900 bg-white px-2 py-0.5 text-xs font-medium text-ink-900">
+                    {a.type === 'MESS' ? 'Mess' : 'Rumah'}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => remove(i, i < day.assignments.length)}
+                    className="flex h-8 w-8 items-center justify-center rounded-sm border-2 border-ink-900 bg-white"
+                    aria-label={`Hapus ${a.name}`}
+                  >
+                    <X className="h-3.5 w-3.5 text-danger-700" strokeWidth={2} />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
         )}
+
+        {/* Form tambah */}
+        <div className="border-t-2 border-ink-200 pt-4">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-ink-500">
+            Tambah Penugasan
+          </p>
+          <div className="flex flex-col gap-3">
+            <select
+              value={paramedicIdx}
+              onChange={(e) => setParamedicIdx(Number(e.target.value))}
+              className="h-12 w-full rounded-md border-[3px] border-ink-900 bg-white px-3 text-base text-ink-900"
+            >
+              {roster.map((r, i) => (
+                <option key={r.id} value={i}>
+                  {r.paramedicName}
+                </option>
+              ))}
+            </select>
+            <div className="grid grid-cols-2 gap-3">
+              <select
+                value={type}
+                onChange={(e) => {
+                  setType(e.target.value as 'MESS' | 'NON_MESS');
+                  setLocation('');
+                }}
+                className="h-12 rounded-md border-[3px] border-ink-900 bg-white px-3 text-base text-ink-900"
+              >
+                <option value="MESS">Mess</option>
+                <option value="NON_MESS">Kunjungan Rumah</option>
+              </select>
+              <select
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="h-12 rounded-md border-[3px] border-ink-900 bg-white px-3 text-base text-ink-900"
+              >
+                <option value="">Pilih lokasi</option>
+                {locations.map((l) => (
+                  <option key={l} value={l}>
+                    {l}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <Button size="full" onClick={add} disabled={!location}>
+              Tambah
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
