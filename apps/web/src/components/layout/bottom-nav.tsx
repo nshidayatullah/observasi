@@ -53,7 +53,9 @@ export function BottomNav() {
           className={({ isActive }) =>
             cn(
               'flex flex-1 flex-col items-center justify-center gap-0.5 text-xs font-medium',
-              isActive ? 'text-primary-700' : 'text-ink-500',
+              isActive
+                ? 'bg-primary-500 text-ink-900 shadow-sm border-2 border-ink-900 rounded-md m-0.5'
+                : 'text-ink-500',
             )
           }
         >
