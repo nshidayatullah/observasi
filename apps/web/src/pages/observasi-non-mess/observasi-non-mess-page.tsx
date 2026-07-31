@@ -415,11 +415,19 @@ function Step2({
           htmlFor="respondentEducation"
           err={errors.respondentEducation?.message}
         >
-          <Input
+          <select
             id="respondentEducation"
-            hasError={!!errors.respondentEducation}
+            className="h-12 w-full rounded-md border-[3px] border-ink-900 bg-white px-3 text-base text-ink-900"
             {...register('respondentEducation')}
-          />
+          >
+            <option value="">Pilih pendidikan</option>
+            <option value="SD">SD</option>
+            <option value="SMP">SMP</option>
+            <option value="SMA">SMA / SMK</option>
+            <option value="D3">D3</option>
+            <option value="S1">S1</option>
+            <option value="S2">S2</option>
+          </select>
         </F>
       </div>
       <F
