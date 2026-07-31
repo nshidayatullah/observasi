@@ -446,6 +446,8 @@ function Step2({
           <option value="Anak">Anak</option>
           <option value="Orang Tua">Orang Tua</option>
           <option value="Saudara">Saudara</option>
+          <option value="Mertua">Mertua</option>
+          <option value="Teman">Teman</option>
           <option value="Lainnya">Lainnya</option>
         </select>
       </F>
