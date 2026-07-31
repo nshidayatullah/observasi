@@ -22,11 +22,28 @@ export default function HomePage() {
       <AppShell title={`${greeting}, ${user.name.split(' ')[0]}`}>
         <Link
           to="/observasi/baru"
-          className="flex h-24 items-center justify-center gap-2 rounded-md border-[3px] border-ink-900 bg-primary-500 font-display text-lg font-semibold text-ink-900 shadow-raised"
+          className="flex h-24 items-center justify-center gap-2 rounded-md border-[3px] border-ink-900 bg-primary-500 font-display text-lg font-semibold text-ink-900 shadow-raised active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
         >
           <Plus className="h-6 w-6" strokeWidth={1.75} />
           Mulai Observasi
         </Link>
+
+        <h2 className="font-display mt-6 text-lg font-semibold text-ink-900">Jadwal Hari Ini</h2>
+        <Card className="flex items-center gap-4 p-4">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border-2 border-ink-900 bg-primary-100">
+            <span className="font-display text-sm font-semibold text-primary-900">MLM</span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm text-ink-500">Shift Malam · Mess</p>
+            <div className="mt-1.5 flex items-center gap-2">
+              <div className="h-2 flex-1 overflow-hidden rounded-sm border-2 border-ink-900 bg-ink-100">
+                <div className="h-full w-3/5 bg-primary-500" />
+              </div>
+              <span className="font-mono text-xs text-ink-500">3/5</span>
+            </div>
+          </div>
+          <span className="font-mono text-sm text-ink-500">60%</span>
+        </Card>
 
         <h2 className="font-display mt-6 text-lg font-semibold text-ink-900">Observasi Terakhir</h2>
         <div className="mt-2 flex flex-col gap-3">

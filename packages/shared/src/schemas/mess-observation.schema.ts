@@ -13,7 +13,11 @@ export const messObservationSchema = z
     hasFinding: z.boolean(),
     employeeName: z.string().optional(),
     employeeNik: z.string().optional(),
-    company: z.enum([COMPANY.PT_PPA, COMPANY.PT_AMM, COMPANY.MITRA_KERJA]).optional(),
+    company: z
+      .enum([COMPANY.PT_PPA, COMPANY.PT_AMM, COMPANY.MITRA_KERJA], {
+        message: 'Perusahaan wajib dipilih',
+      })
+      .optional(),
     position: z.string().optional(),
     department: z.string().optional(),
     bloodPressure: z.string().optional(),

@@ -33,25 +33,23 @@
 
 ## ⚠️ Major — sangat disarankan diperbaiki
 
-### M-01: Field Petugas tidak ada di form Mess
+### ~~M-01: Field Petugas tidak ada di form Mess~~ ✅ Fixed (8db08d2)
 
 - **Layar:** SC-05 Form Mess Bagian 1
 - **Wireframe:** "Petugas Observasi *" dengan default user login.
-- **Aktual:** Tidak ada field petugas. Nama paramedis tidak tercatat di payload observasi Mess (hanya `paramedicId` dari mock fixture).
+- **Perbaikan:** Field `officerName` ditambahkan ke schema Zod, form Step 1, dan fixture, auto-fill dari `user.name`.
 
-### M-02: Field Jabatan & Departemen tidak ada
+### ~~M-02: Field Jabatan & Departemen tidak ada~~ ✅ Fixed (8db08d2)
 
 - **Layar:** SC-05 Form Mess Bagian 2 (Temuan=Ya)
 - **Wireframe:** Jabatan + Departemen dalam 2 kolom (≥ sm).
-- **Aktual:** Tidak ada di form maupun di schema Zod.
-- **Dampak:** Dokter yang mereview tidak bisa melihat jabatan/departemen karyawan yang melanggar.
+- **Perbaikan:** Field `position` dan `department` ditambahkan ke schema Zod (wajib saat Temuan=Ya), form Step 2 (2-kolom grid), fixture, dan MSW handler.
 
-### M-03: Pesan error validasi tidak ramah pengguna
+### ~~M-03: Pesan error validasi tidak ramah pengguna~~ ✅ Fixed
 
 - **Layar:** SC-05 Form Mess
-- **Contoh ditemukan:** `"Invalid enum value. Expected 'PT_PPA' | 'PT_AMM' | 'MITRA_KERJA', received ''"` — teks teknis bahasa Inggris, bukan penjelasan yang bisa dimengerti paramedis.
-- **Seharusnya:** "Perusahaan wajib dipilih karena ada temuan."
-- **Aturan dilanggar:** §7.1 — "Error menjelaskan penyebab dan langkah berikutnya", "tanpa istilah teknis".
+- **Contoh ditemukan:** `"Invalid enum value. Expected 'PT_PPA' | 'PT_AMM' | 'MITRA_KERJA', received ''"` — teks teknis bahasa Inggris.
+- **Perbaikan:** `z.enum()` diberi `{ message: 'Perusahaan wajib dipilih' }`.
 
 ### M-04: Foto tidak ada di form Mess
 
@@ -60,19 +58,17 @@
 - **Aktual:** Tidak ada PhotoUploader komponen.
 - **Refs:** T-064, T-065
 
-### M-05: Tidak ada "Jadwal Hari Ini" di Beranda
+### ~~M-05: Tidak ada "Jadwal Hari Ini" di Beranda~~ ✅ Fixed
 
 - **Layar:** SC-03 Beranda Paramedis
 - **Wireframe:** Kartu jadwal shift + target/selesai + progress bar.
-- **Aktual:** Tidak ada. Hanya CTA "Mulai Observasi" + 3 observasi terakhir.
-- **Dampak:** Paramedis tidak tahu target observasi hari itu.
+- **Perbaikan:** Kartu jadwal mock ditambahkan: MLM badge, Shift Malam · Mess, progress bar 3/5 (60%).
 
-### M-06: Status Rail 8px tidak sesuai spec
+### ~~M-06: Status Rail 8px tidak sesuai spec~~ ✅ Fixed
 
 - **Layar:** SC-07 Riwayat, SC-03 Beranda
 - **Wireframe:** Batang vertikal 8px solid di kiri kartu, border kanan ink-900 — elemen tanda tangan neo-brutalism.
-- **Aktual:** ObservationCard menggunakan warna background/text sebagai penanda status, bukan rail struktural.
-- **Refs:** §1.3, §5.4
+- **Perbaikan:** Rail dipertegas: `w-2` (8px), `self-stretch` full-height, `rounded-l-sm`, `border-r-2 border-ink-900`. Badge "Ada Temuan" signal-500 + badge status dengan warna solid.
 
 ---
 
