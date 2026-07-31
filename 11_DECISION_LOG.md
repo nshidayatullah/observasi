@@ -200,7 +200,7 @@ Bila SMTP tidak tersedia saat MVP, `POST /users` dan `POST /users/:id/reset-pass
 **Status:** Diterima · 2026-07-31
 
 **Konteks**
-Sidak mess dilakukan pada jam istirahat, artinya malam hari, di koridor gelap, di dekat orang yang sedang tidur. Layar putih terang menyilaukan paramedis dan berisiko membangunkan karyawan — yang secara langsung merusak hal yang sedang diobservasi.
+Sidak mess dilakukan siang hari (08.00–12.00), pada jam istirahat karyawan shift malam. Kamar mess sengaja digelapkan (tirai tertutup, lampu mati) agar mereka bisa tidur di siang hari, meski koridor di luar kamar terang oleh matahari. Layar putih terang menyilaukan paramedis saat masuk ke kamar gelap itu dan berisiko membangunkan karyawan — yang secara langsung merusak hal yang sedang diobservasi.
 
 **Keputusan**
 Mode gelap dibangun bersamaan dengan mode terang sejak Fase 3, bukan ditambahkan belakangan. Token warna didefinisikan untuk kedua mode sejak awal. Mengikuti preferensi sistem, dengan toggle manual di Profil.
