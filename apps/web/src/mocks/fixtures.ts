@@ -67,9 +67,12 @@ export type MockMessObservation = {
   createdAt: string;
   hasFinding: boolean;
   status: ObservationStatus;
+  officerName: string;
   employeeName?: string;
   employeeNik?: string;
   company?: (typeof COMPANY)[keyof typeof COMPANY];
+  position?: string;
+  department?: string;
   bloodPressure?: string;
   activity?: string;
   reason?: string;
@@ -87,9 +90,12 @@ export const mockMessObservations: MockMessObservation[] = [
     createdAt: '2026-07-31T02:14:00.000Z',
     hasFinding: true,
     status: OBSERVATION_STATUS.PENDING,
+    officerName: 'Muhammad Suryani',
     employeeName: 'Budi Santoso',
     employeeNik: 'PPA-004512',
     company: COMPANY.PT_PPA,
+    position: 'Operator HD',
+    department: 'Production',
     bloodPressure: '130/85 mmHg',
     activity: 'Bermain game di ponsel',
     reason: 'Belum mengantuk, baru pulang dari warung',
@@ -105,6 +111,7 @@ export const mockMessObservations: MockMessObservation[] = [
     createdAt: '2026-07-31T02:02:00.000Z',
     hasFinding: false,
     status: OBSERVATION_STATUS.PENDING,
+    officerName: 'Muhammad Suryani',
   },
   {
     id: 103,
@@ -117,6 +124,7 @@ export const mockMessObservations: MockMessObservation[] = [
     createdAt: '2026-07-27T03:05:00.000Z',
     hasFinding: true,
     status: OBSERVATION_STATUS.PENDING,
+    officerName: 'Agung Priambara',
     employeeName: 'Ahmad Fauzi',
     employeeNik: 'AMM-002211',
     company: COMPANY.PT_AMM,

@@ -11,9 +11,12 @@ export type MessObservation = {
   createdAt: string;
   hasFinding: boolean;
   status: ObservationStatus;
+  officerName: string;
   employeeName?: string;
   employeeNik?: string;
   company?: Company;
+  position?: string;
+  department?: string;
   bloodPressure?: string;
   activity?: string;
   reason?: string;

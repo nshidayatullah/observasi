@@ -5,28 +5,28 @@
 
 ## 🚫 Blocker — harus diperbaiki sebelum uji paramedis
 
-### B-01: Auth state hilang saat navigasi/refresh
+### ~~B-01: Auth state hilang saat navigasi/refresh~~ ✅ Fixed (23fba8a)
 
 - **Layar:** Semua
 - **Gejala:** Setelah login, navigasi ke halaman lain (misal buka `/observasi` langsung) mengembalikan user ke `/login`.
 - **Akar:** `AuthProvider` menyimpan user di React `useState(null)`, hanya token yang dibaca dari `localStorage`. Saat navigasi, ProtectedRoute membaca `user === null` dan redirect ke login meski token valid.
-- **Perbaikan:** Simpan user ke localStorage juga, ATAU panggil `GET /auth/me` saat mount untuk rehidrasi user dari token yang tersimpan.
+- **Perbaikan:** Simpan user ke localStorage juga, rehidrasi saat mount via `loadUser()`.
 - **Refs:** T-052
 
-### B-02: Form Mess tidak punya stepper 3-langkah
+### ~~B-02: Form Mess tidak punya stepper 3-langkah~~ ✅ Fixed
 
 - **Layar:** SC-05 Form Mess
 - **Wireframe:** 3 langkah (Informasi Dasar → Deskripsi Temuan → Ringkasan), dengan FormStepper progress indicator.
-- **Aktual:** Satu halaman flat, semua field dalam satu form.
-- **Risiko:** Wireframe dibuat berdasarkan prinsip "satu keputusan per layar" (§1.1). Form flat panjang akan sulit diisi sambil berdiri, apalagi dengan validasi kondisional yang baru muncul setelah Temuan=Ya dipilih.
+- **Aktual (sebelum):** Satu halaman flat, semua field dalam satu form.
+- **Perbaikan:** FormStepper component + refactor form jadi 3 langkah dengan navigasi Lanjut/Kembali.
 - **Refs:** T-060, T-066
 
-### B-03: Tidak ada ringkasan sebelum kirim
+### ~~B-03: Tidak ada ringkasan sebelum kirim~~ ✅ Fixed
 
 - **Layar:** SC-05/06 Ringkasan
 - **Wireframe:** Halaman "Periksa Sebelum Kirim" dengan semua data ditampilkan per bagian, masing-masing punya tombol "Ubah".
-- **Aktual:** Tombol "Kirim Observasi" langsung di bawah form.
-- **Risiko:** Tanpa ringkasan, paramedis tidak bisa memverifikasi data sebelum submit. Di lapangan dengan koneksi buruk, sekali kirim tidak bisa diedit.
+- **Aktual (sebelum):** Tombol "Kirim Observasi" langsung di bawah form.
+- **Perbaikan:** Step 3 menampilkan ringkasan read-only dengan tombol "Ubah" per bagian, tombol "Kembali", dan "Kirim Observasi".
 - **Refs:** T-066
 
 ---
