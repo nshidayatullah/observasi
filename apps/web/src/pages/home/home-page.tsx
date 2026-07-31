@@ -114,6 +114,45 @@ function DashboardKpi() {
         <StatCard label="Kepatuhan" value={`${Math.round(data.scheduleCompliance * 100)}%`} />
       </div>
 
+      {/* Status Observasi Hari Ini */}
+      <Card className="p-4">
+        <h2 className="text-label font-semibold text-ink-700">Status Hari Ini</h2>
+        <p className="text-xs text-ink-500">Pantau paramedis yang sudah/belum observasi</p>
+        <div className="mt-3 flex flex-col gap-2">
+          {STATUS_HARI_INI.map((p) => (
+            <div
+              key={p.name}
+              className="flex items-center gap-3 rounded-md border-2 border-ink-200 p-2.5"
+            >
+              <div
+                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-ink-900 text-xs font-bold ${p.done ? 'bg-success-500 text-ink-900' : 'bg-ink-100 text-ink-500'}`}
+              >
+                {p.done ? '✓' : '—'}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium text-ink-900">{p.name}</p>
+                {p.done ? (
+                  <p className="text-xs text-ink-500">
+                    Mess {p.mess} · Rumah {p.rumah} — {p.lastTime} WITA
+                  </p>
+                ) : (
+                  <p className="text-xs text-signal-700">Belum observasi hari ini</p>
+                )}
+              </div>
+              {p.done ? (
+                <span className="shrink-0 rounded-sm bg-success-500 px-2 py-0.5 text-[11px] font-medium text-ink-900 border border-ink-900">
+                  Selesai
+                </span>
+              ) : (
+                <span className="shrink-0 rounded-sm bg-signal-500 px-2 py-0.5 text-[11px] font-medium text-ink-900 border border-ink-900">
+                  Pending
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      </Card>
+
       {/* Persetujuan */}
       <Card className="p-4">
         <h2 className="text-label font-semibold text-ink-700">Persetujuan</h2>
@@ -233,6 +272,13 @@ function DashboardKpi() {
 }
 
 /* ── Chart helpers ──────────────────────────────────────── */
+
+const STATUS_HARI_INI = [
+  { name: 'Muhammad Suryani', done: true, mess: 3, rumah: 1, lastTime: '09:14' },
+  { name: 'Agung Priambara', done: true, mess: 2, rumah: 0, lastTime: '10:05' },
+  { name: 'Rina Andriani', done: true, mess: 4, rumah: 2, lastTime: '09:45' },
+  { name: 'Bambang Hermawan', done: false, mess: 0, rumah: 0, lastTime: '' },
+];
 
 const TREN_BULANAN = [
   { bln: 'Feb', mess: 22, rumah: 5 },
