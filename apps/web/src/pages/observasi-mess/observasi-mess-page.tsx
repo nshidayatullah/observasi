@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { FormStepper, type FormStep } from '@/components/common/form-stepper';
+import { PhotoUploader, type PhotoEntry } from '@/components/common/photo-uploader';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/features/auth/auth-context';
 import { useMessComplexes } from '@/features/master-data/use-mess-complexes';
@@ -62,6 +63,7 @@ export default function MessObservationFormPage() {
   const { data: complexes } = useMessComplexes();
   const create = useCreateMessObservation();
   const [step, setStep] = useState(0);
+  const [photos, setPhotos] = useState<PhotoEntry[]>([]);
 
   const form = useForm<MessObservationInput>({
     resolver: zodResolver(messObservationSchema),
@@ -135,10 +137,17 @@ export default function MessObservationFormPage() {
           />
         )}
 
-        {step === 1 && hasFinding && <StepDeskripsiTemuan register={register} errors={errors} />}
+        {step === 1 && hasFinding && (
+          <StepDeskripsiTemuan
+            register={register}
+            errors={errors}
+            photos={photos}
+            onPhotosChange={setPhotos}
+          />
+        )}
 
         {step === lastStepIndex && (
-          <StepRingkasan form={form} hasFinding={hasFinding} onEdit={setStep} />
+          <StepRingkasan form={form} hasFinding={hasFinding} photos={photos} onEdit={setStep} />
         )}
 
         {create.isError ? (
@@ -312,9 +321,13 @@ function StepInformasiDasar({
 function StepDeskripsiTemuan({
   register,
   errors,
+  photos,
+  onPhotosChange,
 }: {
   register: ReturnType<typeof useForm<MessObservationInput>>['register'];
   errors: ReturnType<typeof useForm<MessObservationInput>>['formState']['errors'];
+  photos: PhotoEntry[];
+  onPhotosChange: (photos: PhotoEntry[]) => void;
 }) {
   return (
     <div className="flex flex-col gap-5">
@@ -415,6 +428,13 @@ function StepDeskripsiTemuan({
           {...register('reason')}
         />
       </FieldGroup>
+
+      <div>
+        <Label required>Foto Temuan</Label>
+        <div className="mt-1.5">
+          <PhotoUploader max={3} value={photos} onChange={onPhotosChange} />
+        </div>
+      </div>
     </div>
   );
 }
@@ -424,10 +444,12 @@ function StepDeskripsiTemuan({
 function StepRingkasan({
   form,
   hasFinding,
+  photos,
   onEdit,
 }: {
   form: ReturnType<typeof useForm<MessObservationInput>>;
   hasFinding: boolean;
+  photos: PhotoEntry[];
   onEdit: (step: number) => void;
 }) {
   const values = form.watch();
@@ -464,6 +486,10 @@ function StepRingkasan({
           <SummaryRow label="Tekanan Darah" value={values.bloodPressure} mono />
           <SummaryRow label="Aktivitas" value={values.activity} long />
           <SummaryRow label="Alasan Belum Tidur" value={values.reason} long />
+          <SummaryRow
+            label="Foto Temuan"
+            value={photos.length > 0 ? `${photos.length} foto terlampir` : undefined}
+          />
         </SummaryCard>
       ) : null}
     </div>

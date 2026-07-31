@@ -102,15 +102,15 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 | T-061 | Halaman SC-04 Pilih Tipe Observasi — dua kartu besar, touch-friendly                     | 08 §8              | `[~]`  |
 | T-062 | Skema Zod form Mess di `packages/shared` termasuk validasi kondisional `hasFinding`      | 10 BR-OBS-04       | `[x]`  |
 | T-063 | SC-05 Mess Bagian 1: tanggal, komplek, nomor mess, petugas, radio Temuan                 | 00 §5.1 (sumber)   | `[x]`  |
-| T-064 | SC-05 Mess Bagian 2 (Temuan = Ya): data karyawan, tekanan darah, aktivitas, alasan, foto | 04 §4              | `[~]`  |
-| T-065 | SC-05 Mess Bagian 3 (Temuan = Tidak): foto kondisi mess                                  | 04 §4              | `[ ]`  |
+| T-064 | SC-05 Mess Bagian 2 (Temuan = Ya): data karyawan, tekanan darah, aktivitas, alasan, foto | 04 §4              | `[x]`  |
+| T-065 | SC-05 Mess Bagian 3 (Temuan = Tidak): foto kondisi mess                                  | 04 §4              | `[~]`  |
 | T-066 | SC-05 Ringkasan & Kirim, dengan tombol edit per bagian                                   | 01 §4              | `[x]`  |
 | T-067 | Skema Zod form Non-Mess termasuk aturan kondisional pet/noise/lainnya                    | 04 §5              | `[x]`  |
 | T-068 | SC-06 Non-Mess Bagian 1: identitas karyawan + kondisi rumah + lingkungan (22 field)      | 04 §5              | `[ ]`  |
 | T-069 | SC-06 Non-Mess Bagian 2: kuesioner fatigue keluarga (10 field)                           | 04 §5              | `[ ]`  |
 | T-070 | SC-06 Non-Mess Bagian 3: petugas, lokasi, multi-foto                                     | 04 §5              | `[ ]`  |
 | T-071 | SC-06 Ringkasan & Kirim                                                                  | 01 §4              | `[ ]`  |
-| T-072 | Komponen `PhotoUploader`: ambil dari kamera/galeri, kompresi client, pratinjau, hapus    | 09 §3.3, 00 NFR-04 | `[ ]`  |
+| T-072 | Komponen `PhotoUploader`: ambil dari kamera/galeri, kompresi client, pratinjau, hapus    | 09 §3.3, 00 NFR-04 | `[x]`  |
 | T-073 | Autosave draft ke IndexedDB tiap 3 detik + kartu "Lanjutkan observasi"                   | 01 §4              | `[ ]`  |
 | T-074 | Halaman SC-07 Riwayat Observasi: filter, pencarian, infinite scroll di mobile            | 04 §6              | `[~]`  |
 | T-075 | Halaman SC-08 Detail Observasi: tampilan read-only + galeri foto + status                | 04 §4, §5          | `[~]`  |
