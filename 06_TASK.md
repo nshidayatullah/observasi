@@ -106,10 +106,10 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 | T-065 | SC-05 Mess Bagian 3 (Temuan = Tidak): foto kondisi mess                                  | 04 §4              | `[~]`  |
 | T-066 | SC-05 Ringkasan & Kirim, dengan tombol edit per bagian                                   | 01 §4              | `[x]`  |
 | T-067 | Skema Zod form Non-Mess termasuk aturan kondisional pet/noise/lainnya                    | 04 §5              | `[x]`  |
-| T-068 | SC-06 Non-Mess Bagian 1: identitas karyawan + kondisi rumah + lingkungan (22 field)      | 04 §5              | `[ ]`  |
-| T-069 | SC-06 Non-Mess Bagian 2: kuesioner fatigue keluarga (10 field)                           | 04 §5              | `[ ]`  |
-| T-070 | SC-06 Non-Mess Bagian 3: petugas, lokasi, multi-foto                                     | 04 §5              | `[ ]`  |
-| T-071 | SC-06 Ringkasan & Kirim                                                                  | 01 §4              | `[ ]`  |
+| T-068 | SC-06 Non-Mess Bagian 1: identitas karyawan + kondisi rumah + lingkungan (22 field)      | 04 §5              | `[x]`  |
+| T-069 | SC-06 Non-Mess Bagian 2: kuesioner fatigue keluarga (10 field)                           | 04 §5              | `[x]`  |
+| T-070 | SC-06 Non-Mess Bagian 3: petugas, lokasi, multi-foto                                     | 04 §5              | `[x]`  |
+| T-071 | SC-06 Ringkasan & Kirim                                                                  | 01 §4              | `[x]`  |
 | T-072 | Komponen `PhotoUploader`: ambil dari kamera/galeri, kompresi client, pratinjau, hapus    | 09 §3.3, 00 NFR-04 | `[x]`  |
 | T-073 | Autosave draft ke IndexedDB tiap 3 detik + kartu "Lanjutkan observasi"                   | 01 §4              | `[ ]`  |
 | T-074 | Halaman SC-07 Riwayat Observasi: filter, pencarian, infinite scroll di mobile            | 04 §6              | `[~]`  |
@@ -122,10 +122,10 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 | T-080 | Halaman SC-09 Antrean Persetujuan: urut terlama, badge aging, filter              | 01 §6        | `[~]`  |
 | T-081 | Dialog Setujui / Tolak dengan catatan medis (wajib saat menolak)                  | 10 BR-APR-02 | `[x]`  |
 | T-082 | Halaman SC-10 Dashboard KPI: kartu ringkasan + tabel per paramedis                | 04 §10       | `[x]`  |
-| T-083 | Halaman SC-11 Jadwal: kalender paramedis, tabel CRUD Superadmin                   | 04 §9        | `[ ]`  |
+| T-083 | Halaman SC-11 Jadwal: kalender paramedis, tabel CRUD Superadmin                   | 04 §9        | `[x]`  |
 | T-084 | Halaman SC-12 Daftar Pengguna: tabel, pencarian, filter, pagination               | 04 §3        | `[~]`  |
-| T-085 | Halaman SC-13/14 Tambah & Edit Pengguna + dialog password sementara sekali tampil | 04 §3        | `[ ]`  |
-| T-086 | Aksi reset password, nonaktifkan, hapus + dialog konfirmasi                       | 01 §7        | `[ ]`  |
+| T-085 | Halaman SC-13/14 Tambah & Edit Pengguna + dialog password sementara sekali tampil | 04 §3        | `[x]`  |
+| T-086 | Aksi reset password, nonaktifkan, hapus + dialog konfirmasi                       | 01 §7        | `[~]`  |
 | T-087 | Halaman SC-15 Master Data Mess: CRUD komplek & kamar, bulk tambah kamar           | 04 §8        | `[ ]`  |
 | T-088 | Halaman SC-16 Pembuat Laporan: filter, pratinjau jumlah baris, tombol ekspor      | 01 §9        | `[ ]`  |
 
@@ -134,9 +134,9 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 | ID    | Task                                                                                             | Acuan   | Status |
 | ----- | ------------------------------------------------------------------------------------------------ | ------- | ------ |
 | T-090 | Setup `vite-plugin-pwa`: manifest, ikon, strategi cache SWR untuk aset & Network-First untuk API | 00 §10  | `[~]`  |
-| T-091 | Setup Dexie: tabel `drafts`, `syncQueue`, `photos`                                               | 01 §5   | `[ ]`  |
-| T-092 | Layer `offline-sync`: enqueue, retry berjenjang, penanganan 409 sebagai sukses                   | 01 §5   | `[ ]`  |
-| T-093 | Hook `useOnlineStatus` + banner status koneksi di header                                         | 05 §4.5 | `[ ]`  |
+| T-091 | Setup Dexie: tabel `drafts`, `syncQueue`, `photos`                                               | 01 §5   | `[x]`  |
+| T-092 | Layer `offline-sync`: enqueue, retry berjenjang, penanganan 409 sebagai sukses                   | 01 §5   | `[~]`  |
+| T-093 | Hook `useOnlineStatus` + banner status koneksi di header                                         | 05 §4.5 | `[x]`  |
 | T-094 | Badge jumlah antrean di header + halaman SC-18 Antrean Sinkronisasi                              | 01 §5   | `[ ]`  |
 | T-095 | Simpan Blob foto hasil kompresi di IndexedDB, unggah saat sinkronisasi                           | 03 §5   | `[ ]`  |
 
@@ -145,8 +145,8 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 | ID    | Task                                                                      | Acuan          | Status |
 | ----- | ------------------------------------------------------------------------- | -------------- | ------ |
 | T-096 | Komponen `EmptyState` untuk semua daftar dengan copy spesifik per konteks | 09 §3.5, 08 §7 | `[x]`  |
-| T-097 | `ErrorBoundary` + halaman 403 & 404                                       | 01 §1          | `[~]`  |
-| T-098 | Skeleton loading untuk daftar dan detail                                  | 09 §3.6        | `[ ]`  |
+| T-097 | `ErrorBoundary` + halaman 403 & 404                                       | 01 §1          | `[x]`  |
+| T-098 | Skeleton loading untuk daftar dan detail                                  | 09 §3.6        | `[x]`  |
 
 **DoD Fase 3:** Seluruh alur di 01_USER_FLOW bisa dijalankan end-to-end dengan MSW aktif. Form bisa diisi offline (matikan network di devtools) dan masuk antrean. Lighthouse mobile: Performance ≥ 90, Accessibility ≥ 95.
 

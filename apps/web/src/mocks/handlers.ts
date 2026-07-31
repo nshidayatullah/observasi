@@ -6,6 +6,7 @@ import {
   mockMessComplexes,
   mockKpiSummary,
   type MockMessObservation,
+  type MockUser,
 } from './fixtures';
 
 const MOCK_PASSWORD = 'Password123';
@@ -86,6 +87,24 @@ export const handlers = [
       data: mockUsers,
       meta: { page: 1, perPage: 25, total: mockUsers.length, totalPages: 1 },
     });
+  }),
+
+  http.post(`${BASE}/users`, async ({ request }) => {
+    const body = (await request.json()) as { name?: string; email?: string; role?: string };
+    const newUser = {
+      id: Math.max(...mockUsers.map((u) => u.id)) + 1,
+      name: body.name ?? '',
+      email: body.email ?? '',
+      role: (body.role as MockUser['role']) ?? 'PARAMEDIC',
+      status: 'ACTIVE' as const,
+      forcePasswordChange: true,
+      lastLoginAt: null,
+    };
+    mockUsers.push(newUser);
+    return HttpResponse.json(
+      { data: { ...newUser, temporaryPassword: 'Kx7mQp2nRw4t' } },
+      { status: 201 },
+    );
   }),
 
   http.get(`${BASE}/observations/mess`, ({ request }) => {
@@ -174,5 +193,39 @@ export const handlers = [
 
   http.get(`${BASE}/kpi/summary`, () => {
     return HttpResponse.json({ data: mockKpiSummary });
+  }),
+
+  http.get(`${BASE}/schedules`, () => {
+    return HttpResponse.json({
+      data: [
+        {
+          id: 1,
+          date: '2026-07-31',
+          shift: 'Malam',
+          locationType: 'MESS',
+          locationName: 'Mess A',
+          targetCount: 5,
+          completedCount: 3,
+        },
+        {
+          id: 2,
+          date: '2026-08-01',
+          shift: 'Malam',
+          locationType: 'MESS',
+          locationName: 'Mess B',
+          targetCount: 4,
+          completedCount: 0,
+        },
+        {
+          id: 3,
+          date: '2026-08-02',
+          shift: 'Siang',
+          locationType: 'NON_MESS',
+          locationName: 'Satui',
+          targetCount: 3,
+          completedCount: 0,
+        },
+      ],
+    });
   }),
 ];

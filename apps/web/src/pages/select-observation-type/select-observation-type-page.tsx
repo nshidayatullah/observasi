@@ -17,13 +17,16 @@ export default function SelectObservationTypePage() {
           </div>
         </Link>
 
-        <div className="flex items-start gap-3 rounded-md border-[3px] border-ink-300 bg-white p-4 opacity-60">
+        <Link
+          to="/observasi/baru/non-mess"
+          className="flex items-start gap-3 rounded-md border-[3px] border-ink-900 bg-white p-4 shadow-raised"
+        >
           <Home className="h-8 w-8 shrink-0" strokeWidth={1.75} />
           <div>
             <p className="font-display text-lg font-semibold text-ink-900">Kunjungan Rumah</p>
-            <p className="text-sm text-ink-500">Segera hadir</p>
+            <p className="text-sm text-ink-500">Karyawan yang tinggal di luar mess</p>
           </div>
-        </div>
+        </Link>
       </div>
     </AppShell>
   );

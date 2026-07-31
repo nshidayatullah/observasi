@@ -18,9 +18,14 @@ const ObservationDetailPage = lazy(
   () => import('@/pages/observation-detail/observation-detail-page'),
 );
 const MessObservationFormPage = lazy(() => import('@/pages/observasi-mess/observasi-mess-page'));
+const NonMessObservationFormPage = lazy(
+  () => import('@/pages/observasi-non-mess/observasi-non-mess-page'),
+);
 const ApprovalQueuePage = lazy(() => import('@/pages/approval-queue/approval-queue-page'));
 const KpiDashboardPage = lazy(() => import('@/pages/kpi/kpi-dashboard-page'));
+const SchedulePage = lazy(() => import('@/pages/schedule/schedule-page'));
 const UserListPage = lazy(() => import('@/pages/users/user-list-page'));
+const UserFormPage = lazy(() => import('@/pages/users/user-form-page'));
 const ProfilePage = lazy(() => import('@/pages/profile/profile-page'));
 const NotFoundPage = lazy(() => import('@/pages/errors/not-found-page'));
 const ForbiddenPage = lazy(() => import('@/pages/errors/forbidden-page'));
@@ -47,6 +52,11 @@ export function AppRoutes() {
         <Route element={<ProtectedRoute allowedRoles={[ROLE.PARAMEDIC]} />}>
           <Route path="/observasi/baru" element={<SelectObservationTypePage />} />
           <Route path="/observasi/baru/mess" element={<MessObservationFormPage />} />
+          <Route path="/observasi/baru/non-mess" element={<NonMessObservationFormPage />} />
+        </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/jadwal" element={<SchedulePage />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={[ROLE.DOCTOR]} />}>
@@ -59,6 +69,7 @@ export function AppRoutes() {
 
         <Route element={<ProtectedRoute allowedRoles={[ROLE.SUPERADMIN]} />}>
           <Route path="/pengguna" element={<UserListPage />} />
+          <Route path="/pengguna/baru" element={<UserFormPage />} />
         </Route>
 
         <Route path="/403" element={<ForbiddenPage />} />
