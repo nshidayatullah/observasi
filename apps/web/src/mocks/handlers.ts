@@ -218,6 +218,54 @@ export const handlers = [
     return HttpResponse.json({ data: obs });
   }),
 
+  http.get(`${BASE}/schedules/roster`, () => {
+    return HttpResponse.json({
+      data: [
+        {
+          id: 1,
+          paramedicId: 1,
+          paramedicName: 'Muhammad Suryani',
+          month: '2026-07',
+          messDays: 18,
+          nonMessDays: 6,
+          assignments: [
+            { date: '2026-07-01', type: 'MESS', location: 'Mess A' },
+            { date: '2026-07-03', type: 'NON_MESS', location: 'Satui' },
+            { date: '2026-07-05', type: 'MESS', location: 'Mess B' },
+            { date: '2026-07-08', type: 'MESS', location: 'Mess A' },
+            { date: '2026-07-10', type: 'NON_MESS', location: 'Satui' },
+          ],
+        },
+        {
+          id: 2,
+          paramedicId: 4,
+          paramedicName: 'Agung Priambara',
+          month: '2026-07',
+          messDays: 15,
+          nonMessDays: 4,
+          assignments: [
+            { date: '2026-07-02', type: 'MESS', location: 'Mess C' },
+            { date: '2026-07-04', type: 'NON_MESS', location: 'Satui' },
+            { date: '2026-07-07', type: 'MESS', location: 'Mess GL' },
+          ],
+        },
+        {
+          id: 3,
+          paramedicId: 5,
+          paramedicName: 'Rina Andriani',
+          month: '2026-07',
+          messDays: 20,
+          nonMessDays: 8,
+          assignments: [
+            { date: '2026-07-01', type: 'MESS', location: 'Mess GL' },
+            { date: '2026-07-06', type: 'NON_MESS', location: 'Satui' },
+            { date: '2026-07-09', type: 'MESS', location: 'Mess Mandala' },
+          ],
+        },
+      ],
+    });
+  }),
+
   http.get(`${BASE}/schedules`, () => {
     return HttpResponse.json({
       data: [
