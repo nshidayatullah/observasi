@@ -22,7 +22,6 @@ const NonMessObservationFormPage = lazy(
   () => import('@/pages/observasi-non-mess/observasi-non-mess-page'),
 );
 const ApprovalQueuePage = lazy(() => import('@/pages/approval-queue/approval-queue-page'));
-const KpiDashboardPage = lazy(() => import('@/pages/kpi/kpi-dashboard-page'));
 const SchedulePage = lazy(() => import('@/pages/schedule/schedule-page'));
 const UserListPage = lazy(() => import('@/pages/users/user-list-page'));
 const UserFormPage = lazy(() => import('@/pages/users/user-form-page'));
@@ -61,10 +60,6 @@ export function AppRoutes() {
 
         <Route element={<ProtectedRoute allowedRoles={[ROLE.DOCTOR]} />}>
           <Route path="/persetujuan" element={<ApprovalQueuePage />} />
-        </Route>
-
-        <Route element={<ProtectedRoute allowedRoles={[ROLE.DOCTOR, ROLE.SUPERADMIN]} />}>
-          <Route path="/kpi" element={<KpiDashboardPage />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={[ROLE.SUPERADMIN]} />}>
