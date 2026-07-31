@@ -1,5 +1,13 @@
 import { NavLink } from 'react-router';
-import { Home, ClipboardList, CalendarDays, User, Stethoscope, Users } from 'lucide-react';
+import {
+  Home,
+  ClipboardList,
+  CalendarDays,
+  User,
+  Stethoscope,
+  Users,
+  BarChart3,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/features/auth/auth-context';
 import { ROLE } from '@observasi/shared';
@@ -21,6 +29,7 @@ const DOCTOR_ITEMS: NavItem[] = [
   { to: '/beranda', label: 'Beranda', icon: Home },
   { to: '/persetujuan', label: 'Persetujuan', icon: Stethoscope },
   { to: '/observasi', label: 'Observasi', icon: ClipboardList },
+  { to: '/kpi', label: 'KPI', icon: BarChart3 },
   { to: '/profil', label: 'Profil', icon: User },
 ];
 
@@ -28,6 +37,7 @@ const SUPERADMIN_ITEMS: NavItem[] = [
   { to: '/beranda', label: 'Beranda', icon: Home },
   { to: '/pengguna', label: 'Pengguna', icon: Users },
   { to: '/observasi', label: 'Observasi', icon: ClipboardList },
+  { to: '/kpi', label: 'KPI', icon: BarChart3 },
   { to: '/profil', label: 'Profil', icon: User },
 ];
 
