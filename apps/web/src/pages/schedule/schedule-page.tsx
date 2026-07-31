@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { CalendarDays, MapPin, ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import { CalendarDays, MapPin, ChevronLeft, ChevronRight, Plus, X } from 'lucide-react';
 import { AppShell } from '@/components/layout/app-shell';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -167,6 +167,7 @@ function SuperadminRoster() {
   const now = new Date();
   const [year, setYear] = useState(now.getFullYear());
   const [month, setMonth] = useState(now.getMonth() + 1);
+  const [selectedDay, setSelectedDay] = useState<CalendarDay | null>(null);
 
   const monthKey = `${year}-${String(month).padStart(2, '0')}`;
 
@@ -274,12 +275,14 @@ function SuperadminRoster() {
               const isToday = cell.date === today;
 
               return (
-                <div
+                <button
+                  type="button"
                   key={i}
+                  onClick={() => cell.assignments.length > 0 && setSelectedDay(cell)}
                   className={cn(
-                    'min-h-[72px] border-b border-r border-ink-200 p-1',
-                    'border-b-ink-200 border-r-ink-200',
-                    (i + 1) % 7 === 0 && 'border-r-0', // last column no right border
+                    'min-h-[72px] w-full border-b border-r border-ink-200 p-1 text-left transition-colors',
+                    cell.assignments.length > 0 && 'cursor-pointer hover:bg-ink-100',
+                    (i + 1) % 7 === 0 && 'border-r-0',
                     !cell.isCurrentMonth && 'bg-ink-50 opacity-40',
                   )}
                 >
@@ -317,17 +320,79 @@ function SuperadminRoster() {
                       </span>
                     ) : null}
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
         </div>
       )}
 
+      {/* Modal detail hari */}
+      {selectedDay ? <DayModal day={selectedDay} onClose={() => setSelectedDay(null)} /> : null}
+
       <Button size="full" className="mt-5" onClick={() => alert('Tambah roster — Fase 5 backend')}>
         <Plus className="h-5 w-5" strokeWidth={1.75} />
         Tambah Roster
       </Button>
     </AppShell>
+  );
+}
+
+/* ── Modal detail hari ──────────────────────────────────── */
+
+function DayModal({ day, onClose }: { day: CalendarDay; onClose: () => void }) {
+  const dateStr = new Date(day.date + 'T00:00:00').toLocaleDateString('id-ID', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center bg-ink-900/60 md:items-center"
+      onClick={onClose}
+    >
+      <div
+        className="flex w-full flex-col gap-4 rounded-t-lg border-t-[3px] border-x-[3px] border-ink-900 bg-white p-5 shadow-sheet md:w-80 md:rounded-lg md:border-[3px] md:shadow-raised"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="mx-auto h-1.5 w-10 rounded-full bg-ink-300 md:hidden" />
+        <div className="flex items-center justify-between">
+          <h3 className="font-display text-subtitle text-ink-900">{dateStr}</h3>
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex h-8 w-8 items-center justify-center"
+            aria-label="Tutup"
+          >
+            <X className="h-4 w-4" strokeWidth={1.75} />
+          </button>
+        </div>
+        {day.assignments.length === 0 ? (
+          <p className="text-sm text-ink-500">Tidak ada penugasan.</p>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {day.assignments.map((a, i) => (
+              <div
+                key={i}
+                className={cn(
+                  'flex items-center justify-between rounded-md border-2 border-ink-900 p-3',
+                  a.type === 'MESS' ? 'bg-primary-500' : 'bg-signal-500',
+                )}
+              >
+                <div>
+                  <p className="text-sm font-medium text-ink-900">{a.name}</p>
+                  <p className="text-xs text-ink-900/70">{a.location}</p>
+                </div>
+                <span className="rounded-sm border-2 border-ink-900 bg-white px-2 py-0.5 text-xs font-medium text-ink-900">
+                  {a.type === 'MESS' ? 'Mess' : 'Kunjungan Rumah'}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
