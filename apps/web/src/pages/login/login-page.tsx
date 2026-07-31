@@ -9,6 +9,16 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/features/auth/auth-context';
 import { useLogin } from '@/features/auth/use-login';
+import { cn } from '@/lib/utils';
+
+const QUICK_ACCOUNTS = [
+  { email: 'suryani@example.com', label: 'Suryani', desc: 'Paramedis' },
+  { email: 'agung@example.com', label: 'Agung', desc: 'Paramedis · Ganti PW' },
+  { email: 'haamim@example.com', label: 'dr. Haamim', desc: 'Dokter' },
+  { email: 'admin@example.com', label: 'Hidayatullah', desc: 'Superadmin' },
+];
+
+const DEV_PASSWORD = 'Password123';
 
 export default function LoginPage() {
   const { user } = useAuth();
@@ -95,6 +105,32 @@ export default function LoginPage() {
 
           <p className="text-center text-sm text-ink-500">Lupa password? Hubungi Superadmin.</p>
         </form>
+
+        <div className="mt-6 border-t-2 border-ink-200 pt-4">
+          <p className="mb-3 text-center text-xs font-medium uppercase tracking-wide text-ink-500">
+            Cepat Login — Pengembangan
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            {QUICK_ACCOUNTS.map((a) => {
+              const active = login.variables?.email === a.email;
+              return (
+                <button
+                  key={a.email}
+                  type="button"
+                  disabled={login.isPending}
+                  onClick={() => login.mutate({ email: a.email, password: DEV_PASSWORD })}
+                  className={cn(
+                    'rounded-md border-2 border-ink-900 p-2 text-left transition-colors',
+                    active ? 'bg-primary-500 shadow-sm' : 'bg-ink-100 hover:bg-ink-200',
+                  )}
+                >
+                  <p className="truncate text-xs font-semibold text-ink-900">{a.label}</p>
+                  <p className="truncate text-[11px] text-ink-500">{a.desc}</p>
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
