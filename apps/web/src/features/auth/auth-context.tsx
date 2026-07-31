@@ -18,8 +18,17 @@ type AuthContextValue = {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
+function loadUser(): AuthUser | null {
+  try {
+    const raw = localStorage.getItem('authUser');
+    return raw ? (JSON.parse(raw) as AuthUser) : null;
+  } catch {
+    return null;
+  }
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<AuthUser | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(loadUser);
   const [accessToken, setAccessToken] = useState<string | null>(() =>
     localStorage.getItem('accessToken'),
   );
@@ -30,11 +39,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       accessToken,
       setSession: (nextUser, token) => {
         localStorage.setItem('accessToken', token);
+        localStorage.setItem('authUser', JSON.stringify(nextUser));
         setAccessToken(token);
         setUser(nextUser);
       },
       clearSession: () => {
         localStorage.removeItem('accessToken');
+        localStorage.removeItem('authUser');
         setAccessToken(null);
         setUser(null);
       },

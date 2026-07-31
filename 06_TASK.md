@@ -51,7 +51,7 @@ Wireframe dibuat sebagai low-fidelity di 08_UI_GUIDE.md, lalu diverifikasi ke pa
 
 | ID    | Task                                                             | Acuan    | Status |
 | ----- | ---------------------------------------------------------------- | -------- | ------ |
-| T-020 | Tetapkan design token: warna, tipografi, spacing, radius, shadow | 08 §2–§4 | `[ ]`  |
+| T-020 | Tetapkan design token: warna, tipografi, spacing, radius, shadow | 08 §2–§4 | `[x]`  |
 | T-021 | Wireframe SC-01 Login, SC-02 Ganti Password Wajib                | 08 §8    | `[ ]`  |
 | T-022 | Wireframe SC-03 Beranda (3 varian role)                          | 08 §8    | `[ ]`  |
 | T-023 | Wireframe SC-04 Pilih Tipe Observasi                             | 08 §8    | `[ ]`  |
@@ -76,33 +76,33 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 
 | ID    | Task                                                                                 | Acuan          | Status |
 | ----- | ------------------------------------------------------------------------------------ | -------------- | ------ |
-| T-040 | Konfigurasi Tailwind v4 dengan token dari T-020                                      | 08 §2          | `[ ]`  |
-| T-041 | Buat `AppShell`: header, bottom nav (mobile), sidebar (desktop), sesuai role         | 09 §3.1        | `[ ]`  |
-| T-042 | Setup React Router 7: definisi route SC-01–SC-19, lazy loading per halaman           | 01 §1, 05 §1.1 | `[ ]`  |
-| T-043 | Buat `ProtectedRoute` dengan pengecekan role dan `forcePasswordChange`               | 01 §3          | `[ ]`  |
-| T-044 | Setup TanStack Query + `queryClient` + struktur query key per fitur                  | 05 §4.2        | `[ ]`  |
-| T-045 | Setup MSW dengan handler untuk seluruh endpoint di 04_API_CONTRACT                   | 04             | `[ ]`  |
-| T-046 | Buat fixture data mock: 3 paramedis, 1 dokter, 30 observasi campuran, 8 komplek mess | 03 §6.5        | `[ ]`  |
-| T-047 | Buat `lib/format.ts`: format tanggal WITA, enum → label, ukuran file                 | 05 §4, 08 §7   | `[ ]`  |
+| T-040 | Konfigurasi Tailwind v4 dengan token dari T-020                                      | 08 §2          | `[x]`  |
+| T-041 | Buat `AppShell`: header, bottom nav (mobile), sidebar (desktop), sesuai role         | 09 §3.1        | `[~]`  |
+| T-042 | Setup React Router 7: definisi route SC-01–SC-19, lazy loading per halaman           | 01 §1, 05 §1.1 | `[x]`  |
+| T-043 | Buat `ProtectedRoute` dengan pengecekan role dan `forcePasswordChange`               | 01 §3          | `[x]`  |
+| T-044 | Setup TanStack Query + `queryClient` + struktur query key per fitur                  | 05 §4.2        | `[x]`  |
+| T-045 | Setup MSW dengan handler untuk seluruh endpoint di 04_API_CONTRACT                   | 04             | `[~]`  |
+| T-046 | Buat fixture data mock: 3 paramedis, 1 dokter, 30 observasi campuran, 8 komplek mess | 03 §6.5        | `[~]`  |
+| T-047 | Buat `lib/format.ts`: format tanggal WITA, enum → label, ukuran file                 | 05 §4, 08 §7   | `[x]`  |
 
 ### 3.2 Autentikasi
 
 | ID    | Task                                                                              | Acuan         | Status |
 | ----- | --------------------------------------------------------------------------------- | ------------- | ------ |
-| T-050 | Halaman SC-01 Login + skema Zod + penanganan error terkunci/nonaktif              | 01 §3, 04 §2  | `[ ]`  |
-| T-051 | Halaman SC-02 Ganti Password Wajib + indikator kekuatan password                  | 10 BR-AUTH-05 | `[ ]`  |
-| T-052 | Store auth (context + localStorage untuk token), auto-refresh sebelum kedaluwarsa | 04 §2         | `[ ]`  |
-| T-053 | Halaman SC-17 Profil + ganti password mandiri                                     | 04 §2         | `[ ]`  |
+| T-050 | Halaman SC-01 Login + skema Zod + penanganan error terkunci/nonaktif              | 01 §3, 04 §2  | `[x]`  |
+| T-051 | Halaman SC-02 Ganti Password Wajib + indikator kekuatan password                  | 10 BR-AUTH-05 | `[~]`  |
+| T-052 | Store auth (context + localStorage untuk token), auto-refresh sebelum kedaluwarsa | 04 §2         | `[~]`  |
+| T-053 | Halaman SC-17 Profil + ganti password mandiri                                     | 04 §2         | `[~]`  |
 
 ### 3.3 Observasi (inti produk)
 
 | ID    | Task                                                                                     | Acuan              | Status |
 | ----- | ---------------------------------------------------------------------------------------- | ------------------ | ------ |
 | T-060 | Komponen `FormStepper` — indikator langkah, navigasi maju/mundur                         | 09 §3.2            | `[ ]`  |
-| T-061 | Halaman SC-04 Pilih Tipe Observasi — dua kartu besar, touch-friendly                     | 08 §8              | `[ ]`  |
-| T-062 | Skema Zod form Mess di `packages/shared` termasuk validasi kondisional `hasFinding`      | 10 BR-OBS-04       | `[ ]`  |
-| T-063 | SC-05 Mess Bagian 1: tanggal, komplek, nomor mess, petugas, radio Temuan                 | 00 §5.1 (sumber)   | `[ ]`  |
-| T-064 | SC-05 Mess Bagian 2 (Temuan = Ya): data karyawan, tekanan darah, aktivitas, alasan, foto | 04 §4              | `[ ]`  |
+| T-061 | Halaman SC-04 Pilih Tipe Observasi — dua kartu besar, touch-friendly                     | 08 §8              | `[~]`  |
+| T-062 | Skema Zod form Mess di `packages/shared` termasuk validasi kondisional `hasFinding`      | 10 BR-OBS-04       | `[x]`  |
+| T-063 | SC-05 Mess Bagian 1: tanggal, komplek, nomor mess, petugas, radio Temuan                 | 00 §5.1 (sumber)   | `[~]`  |
+| T-064 | SC-05 Mess Bagian 2 (Temuan = Ya): data karyawan, tekanan darah, aktivitas, alasan, foto | 04 §4              | `[~]`  |
 | T-065 | SC-05 Mess Bagian 3 (Temuan = Tidak): foto kondisi mess                                  | 04 §4              | `[ ]`  |
 | T-066 | SC-05 Ringkasan & Kirim, dengan tombol edit per bagian                                   | 01 §4              | `[ ]`  |
 | T-067 | Skema Zod form Non-Mess termasuk aturan kondisional pet/noise/lainnya                    | 04 §5              | `[ ]`  |
@@ -112,18 +112,18 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 | T-071 | SC-06 Ringkasan & Kirim                                                                  | 01 §4              | `[ ]`  |
 | T-072 | Komponen `PhotoUploader`: ambil dari kamera/galeri, kompresi client, pratinjau, hapus    | 09 §3.3, 00 NFR-04 | `[ ]`  |
 | T-073 | Autosave draft ke IndexedDB tiap 3 detik + kartu "Lanjutkan observasi"                   | 01 §4              | `[ ]`  |
-| T-074 | Halaman SC-07 Riwayat Observasi: filter, pencarian, infinite scroll di mobile            | 04 §6              | `[ ]`  |
-| T-075 | Halaman SC-08 Detail Observasi: tampilan read-only + galeri foto + status                | 04 §4, §5          | `[ ]`  |
+| T-074 | Halaman SC-07 Riwayat Observasi: filter, pencarian, infinite scroll di mobile            | 04 §6              | `[~]`  |
+| T-075 | Halaman SC-08 Detail Observasi: tampilan read-only + galeri foto + status                | 04 §4, §5          | `[~]`  |
 
 ### 3.4 Dokter & Superadmin
 
 | ID    | Task                                                                              | Acuan        | Status |
 | ----- | --------------------------------------------------------------------------------- | ------------ | ------ |
-| T-080 | Halaman SC-09 Antrean Persetujuan: urut terlama, badge aging, filter              | 01 §6        | `[ ]`  |
+| T-080 | Halaman SC-09 Antrean Persetujuan: urut terlama, badge aging, filter              | 01 §6        | `[~]`  |
 | T-081 | Dialog Setujui / Tolak dengan catatan medis (wajib saat menolak)                  | 10 BR-APR-02 | `[ ]`  |
 | T-082 | Halaman SC-10 Dashboard KPI: kartu ringkasan + tabel per paramedis                | 04 §10       | `[ ]`  |
 | T-083 | Halaman SC-11 Jadwal: kalender paramedis, tabel CRUD Superadmin                   | 04 §9        | `[ ]`  |
-| T-084 | Halaman SC-12 Daftar Pengguna: tabel, pencarian, filter, pagination               | 04 §3        | `[ ]`  |
+| T-084 | Halaman SC-12 Daftar Pengguna: tabel, pencarian, filter, pagination               | 04 §3        | `[~]`  |
 | T-085 | Halaman SC-13/14 Tambah & Edit Pengguna + dialog password sementara sekali tampil | 04 §3        | `[ ]`  |
 | T-086 | Aksi reset password, nonaktifkan, hapus + dialog konfirmasi                       | 01 §7        | `[ ]`  |
 | T-087 | Halaman SC-15 Master Data Mess: CRUD komplek & kamar, bulk tambah kamar           | 04 §8        | `[ ]`  |
@@ -133,7 +133,7 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 
 | ID    | Task                                                                                             | Acuan   | Status |
 | ----- | ------------------------------------------------------------------------------------------------ | ------- | ------ |
-| T-090 | Setup `vite-plugin-pwa`: manifest, ikon, strategi cache SWR untuk aset & Network-First untuk API | 00 §10  | `[ ]`  |
+| T-090 | Setup `vite-plugin-pwa`: manifest, ikon, strategi cache SWR untuk aset & Network-First untuk API | 00 §10  | `[~]`  |
 | T-091 | Setup Dexie: tabel `drafts`, `syncQueue`, `photos`                                               | 01 §5   | `[ ]`  |
 | T-092 | Layer `offline-sync`: enqueue, retry berjenjang, penanganan 409 sebagai sukses                   | 01 §5   | `[ ]`  |
 | T-093 | Hook `useOnlineStatus` + banner status koneksi di header                                         | 05 §4.5 | `[ ]`  |
@@ -144,8 +144,8 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 
 | ID    | Task                                                                      | Acuan          | Status |
 | ----- | ------------------------------------------------------------------------- | -------------- | ------ |
-| T-096 | Komponen `EmptyState` untuk semua daftar dengan copy spesifik per konteks | 09 §3.5, 08 §7 | `[ ]`  |
-| T-097 | `ErrorBoundary` + halaman 403 & 404                                       | 01 §1          | `[ ]`  |
+| T-096 | Komponen `EmptyState` untuk semua daftar dengan copy spesifik per konteks | 09 §3.5, 08 §7 | `[x]`  |
+| T-097 | `ErrorBoundary` + halaman 403 & 404                                       | 01 §1          | `[~]`  |
 | T-098 | Skeleton loading untuk daftar dan detail                                  | 09 §3.6        | `[ ]`  |
 
 **DoD Fase 3:** Seluruh alur di 01_USER_FLOW bisa dijalankan end-to-end dengan MSW aktif. Form bisa diisi offline (matikan network di devtools) dan masuk antrean. Lighthouse mobile: Performance ≥ 90, Accessibility ≥ 95.

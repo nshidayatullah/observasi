@@ -1,7 +1,16 @@
 @import "tailwindcss";
 
+/* IBM Plex superfamili — self-hosted via Google Fonts.
+   TODO T-090: ganti ke self-hosted subset latin agar PWA tetap bekerja offline. */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+
 @theme {
-  /* Netral — ink-900 juga dipakai sebagai warna border universal (neo-brutalism) */
+  /* ── Warna ──────────────────────────────────────────────
+     Neo-brutalism: flat, jenuh, border solid ink-900.
+     Aturan pemakaian warna → 08_UI_GUIDE.md §2.1 */
+
+  /* Netral — ink-900 juga dipakai sebagai warna BORDER universal */
+  --color-white: #ffffff;
   --color-ink-900: #0b0f14;
   --color-ink-700: #263441;
   --color-ink-500: #55677a;
@@ -10,15 +19,18 @@
   --color-ink-100: #edf1f5;
   --color-ink-50: #f4f1e9;
 
+  /* Primer — teal terang jenuh */
   --color-primary-900: #073c42;
   --color-primary-700: #0f5c63;
   --color-primary-500: #17b4b0;
   --color-primary-100: #dceff0;
 
+  /* Sinyal — amber hi-vis, HANYA untuk temuan & peringatan */
   --color-signal-700: #b45f12;
   --color-signal-500: #ff9e1b;
   --color-signal-100: #fdf0df;
 
+  /* Semantik */
   --color-success-700: #1f5d3d;
   --color-success-500: #38c172;
   --color-success-100: #e1f2e8;
@@ -27,22 +39,63 @@
   --color-danger-500: #ff4b3e;
   --color-danger-100: #fbe6e4;
 
+  /* Offline — ungu, untuk status antrean sinkronisasi saja */
   --color-offline-500: #8b5cf6;
   --color-offline-100: #eeeaf7;
 
+  /* ── Tipografi ──────────────────────────────────────────
+     Skala tipe & superfamili → 08_UI_GUIDE.md §2.2 */
   --font-display: "IBM Plex Sans Condensed", system-ui, sans-serif;
   --font-body: "IBM Plex Sans", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
+  --text-display: 1.75rem;        /* 28px, line-height 34px via --leading */
+  --text-display--line-height: 2.125rem;
+  --text-title: 1.25rem;          /* 20px */
+  --text-title--line-height: 1.75rem;
+  --text-subtitle: 1.0625rem;     /* 17px */
+  --text-subtitle--line-height: 1.5rem;
+  --text-body: 1rem;              /* 16px — tidak pernah di bawah ini pada input */
+  --text-body--line-height: 1.5rem;
+  --text-label: 0.875rem;         /* 14px */
+  --text-label--line-height: 1.25rem;
+  --text-caption: 0.8125rem;      /* 13px */
+  --text-caption--line-height: 1.125rem;
+  --text-data: 0.9375rem;         /* 15px, mono, untuk NIK & tekanan darah */
+  --text-data--line-height: 1.375rem;
+
+  /* ── Radius ─────────────────────────────────────────────
+     Nyaris nol — brutalism → 08_UI_GUIDE.md §2.4 */
   --radius-sm: 2px;
   --radius-md: 4px;
   --radius-lg: 6px;
+  --radius-full: 999px; /* dikecualikan hanya untuk avatar & indikator titik */
 
+  /* ── Shadow ─────────────────────────────────────────────
+     Offset keras solid, bukan blur → 08_UI_GUIDE.md §2.4 */
   --shadow-sm: 3px 3px 0 0 var(--color-ink-900);
   --shadow-card: 4px 4px 0 0 var(--color-ink-900);
   --shadow-raised: 6px 6px 0 0 var(--color-ink-900);
+  --shadow-sheet: 0 -6px 0 0 var(--color-ink-900);
+  --shadow-pressed: 0 0 0 0 var(--color-ink-900);
+
+  /* ── Animasi ────────────────────────────────────────────
+     Press: elemen "turun" mengejar bayangan mekanis, bukan halus */
+  --animate-press: press 120ms ease-out;
 }
 
+/* Keyframes press — dipakai bersama animate-press + shadow-pressed */
+@keyframes press {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(3px, 3px);
+  }
+}
+
+/* ── Mode Gelap ───────────────────────────────────────────
+   Wajib — kamar mess digelapkan saat sidak → 08_UI_GUIDE.md §3 */
 :root.dark {
   --color-ink-50: #0e151d;
   --color-ink-100: #161e28;
@@ -53,8 +106,17 @@
   --color-signal-500: #f0a050;
 }
 
+/* ── Reset ─────────────────────────────────────────────── */
 body {
   font-family: var(--font-body);
   background-color: var(--color-ink-50);
   color: var(--color-ink-900);
+}
+
+/* Hormati preferensi reduced-motion — ganti animasi press dengan perubahan warna instan */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
