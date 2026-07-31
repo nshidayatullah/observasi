@@ -130,6 +130,92 @@ function DashboardKpi() {
         ) : null}
       </Card>
 
+      {/* Tren Bulanan */}
+      <Card className="p-4">
+        <h2 className="text-label font-semibold text-ink-700">Tren Bulanan</h2>
+        <div className="mt-3 flex items-end gap-2" style={{ height: 120 }}>
+          {TREN_BULANAN.map((m, i) => (
+            <div key={i} className="flex flex-1 flex-col items-center gap-1">
+              <div className="flex w-full flex-col justify-end gap-0.5" style={{ height: 80 }}>
+                <div
+                  className="w-full bg-primary-500 border border-ink-900 rounded-t-sm"
+                  style={{ height: `${(m.mess / 60) * 80}px` }}
+                />
+                <div
+                  className="w-full bg-signal-500 border border-ink-900 rounded-t-sm"
+                  style={{ height: `${(m.rumah / 60) * 80}px` }}
+                />
+              </div>
+              <span className="text-[10px] text-ink-500">{m.bln}</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 flex items-center gap-4 text-xs">
+          <span className="flex items-center gap-1.5">
+            <span className="inline-block h-2.5 w-2.5 rounded-sm border border-ink-900 bg-primary-500" />{' '}
+            Mess
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="inline-block h-2.5 w-2.5 rounded-sm border border-ink-900 bg-signal-500" />{' '}
+            Rumah
+          </span>
+        </div>
+      </Card>
+
+      {/* Distribusi Status */}
+      <Card className="p-4">
+        <h2 className="text-label font-semibold text-ink-700">Distribusi Status</h2>
+        <div className="mt-3 flex flex-col gap-2.5">
+          <StatusBar label="Menunggu" count={23} max={60} color="bg-ink-200" />
+          <StatusBar label="Disetujui" count={32} max={60} color="bg-success-500" />
+          <StatusBar label="Ditolak" count={5} max={60} color="bg-danger-500" />
+        </div>
+      </Card>
+
+      {/* Rasio Temuan */}
+      <div className="grid grid-cols-2 gap-3">
+        <Card className="p-4 text-center">
+          <h2 className="text-label font-semibold text-ink-700">Rasio Temuan</h2>
+          <div className="mt-3 flex justify-center">
+            <div className="relative flex h-24 w-24 items-center justify-center rounded-full border-[4px] border-ink-900 bg-ink-100">
+              <div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `conic-gradient(var(--color-signal-500) 0deg, var(--color-signal-500) ${Math.round((data.findingCount / data.messCount) * 360)}deg, var(--color-primary-500) ${Math.round((data.findingCount / data.messCount) * 360)}deg, var(--color-primary-500) 360deg)`,
+                  clipPath: 'circle(50%)',
+                }}
+              />
+              <div className="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-ink-900 bg-white">
+                <span className="font-display text-lg font-semibold text-ink-900">
+                  {Math.round((data.findingCount / data.messCount) * 100)}%
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="mt-2 flex justify-center gap-4 text-xs">
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block h-2.5 w-2.5 rounded-sm border border-ink-900 bg-signal-500" />{' '}
+              Temuan
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block h-2.5 w-2.5 rounded-sm border border-ink-900 bg-primary-500" />{' '}
+              Tertib
+            </span>
+          </div>
+        </Card>
+
+        <Card className="p-4">
+          <h2 className="text-label font-semibold text-ink-700">Top Komplek</h2>
+          <div className="mt-3 flex flex-col gap-2">
+            <TopRow rank={1} name="Mess A" count={34} max={40} />
+            <TopRow rank={2} name="Mess C" count={28} max={40} />
+            <TopRow rank={3} name="Mess GL" count={22} max={40} />
+            <TopRow rank={4} name="Mess Mandala" count={18} max={40} />
+            <TopRow rank={5} name="Mess B" count={15} max={40} />
+          </div>
+        </Card>
+      </div>
+
       {/* Per Paramedis */}
       <Card className="p-4">
         <h2 className="text-label font-semibold text-ink-700">Per Paramedis</h2>
@@ -139,6 +225,62 @@ function DashboardKpi() {
           <ParamedicRow name="Rina Andriani" mess={32} rumah={15} compliance={0.88} />
         </div>
       </Card>
+    </div>
+  );
+}
+
+/* ── Chart helpers ──────────────────────────────────────── */
+
+const TREN_BULANAN = [
+  { bln: 'Feb', mess: 22, rumah: 5 },
+  { bln: 'Mar', mess: 28, rumah: 7 },
+  { bln: 'Apr', mess: 25, rumah: 6 },
+  { bln: 'Mei', mess: 31, rumah: 8 },
+  { bln: 'Jun', mess: 27, rumah: 9 },
+  { bln: 'Jul', mess: 34, rumah: 11 },
+];
+
+function StatusBar({
+  label,
+  count,
+  max,
+  color,
+}: {
+  label: string;
+  count: number;
+  max: number;
+  color: string;
+}) {
+  return (
+    <div className="flex items-center gap-2 text-sm">
+      <span className="w-20 shrink-0 text-ink-500">{label}</span>
+      <div className="h-4 flex-1 overflow-hidden rounded-sm border-2 border-ink-900 bg-ink-100">
+        <div className={`h-full ${color}`} style={{ width: `${(count / max) * 100}%` }} />
+      </div>
+      <span className="w-8 text-right font-mono text-xs text-ink-900">{count}</span>
+    </div>
+  );
+}
+
+function TopRow({
+  rank,
+  name,
+  count,
+  max,
+}: {
+  rank: number;
+  name: string;
+  count: number;
+  max: number;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="w-4 text-center font-mono text-xs text-ink-500">{rank}</span>
+      <span className="w-20 truncate text-xs text-ink-900">{name}</span>
+      <div className="h-3 flex-1 overflow-hidden rounded-sm border border-ink-900 bg-ink-100">
+        <div className="h-full bg-primary-500" style={{ width: `${(count / max) * 100}%` }} />
+      </div>
+      <span className="w-7 text-right font-mono text-[11px] text-ink-500">{count}</span>
     </div>
   );
 }
