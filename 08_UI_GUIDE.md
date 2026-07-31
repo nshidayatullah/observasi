@@ -9,7 +9,7 @@
 
 ### 1.1 Konteks pemakaian menentukan bentuknya
 
-Aplikasi ini dipakai berdiri di koridor mess pukul 22.00, satu tangan memegang ponsel dan senter, atau di teras rumah karyawan tengah hari dengan matahari langsung menerpa layar. Bukan di meja kantor. Tiga konsekuensi:
+Aplikasi ini dipakai berdiri di koridor mess pukul 09.00–12.00, satu tangan memegang ponsel, cahaya matahari siang menerpa layar dari jendela koridor — atau di teras rumah karyawan tengah hari dengan matahari langsung. Bukan di meja kantor. Tiga konsekuensi:
 
 1. **Kontras tinggi, bukan halus.** Tidak ada teks abu muda di atas putih. Rasio kontras minimum 4.5:1, target 7:1 untuk teks utama.
 2. **Target besar, jarak longgar.** Minimum 44×44 px, jarak antar tombol minimal 8 px agar tidak salah tekan.
@@ -181,7 +181,7 @@ Setiap kartu, tombol, dan input punya border `ink-900` + bayangan offset keras s
 
 ## 3. Mode Gelap
 
-Wajib, bukan opsional. Sidak dilakukan pada jam istirahat — malam hari, koridor mess gelap. Layar putih menyilaukan dan mengganggu karyawan yang sedang tidur.
+Wajib, bukan opsional. Sidak dilakukan siang hari (08.00–12.00) saat karyawan shift malam sedang beristirahat sebelum bertugas — kamar mess sengaja digelapkan (tirai tertutup, lampu mati) agar mereka bisa tidur di siang hari. Layar putih menyilaukan dan mengganggu karyawan yang sedang tidur di dalam kamar gelap itu, meski paramedis sendiri berjalan di koridor bercahaya matahari.
 
 ```css
 .dark {
@@ -266,7 +266,7 @@ Batang **8 px** di sisi kiri kartu, tinggi penuh, border kanan `ink-900` 2 px me
 
 ```
 ┏━┳──────────────────────────────────┓
-┃█┃ Mess A / 7        30 Jul, 22:14  ┃
+┃█┃ Mess A / 7        30 Jul, 09:14  ┃
 ┃█┃ Budi Santoso · PT. PPA           ┃
 ┃█┃ [Ada Temuan]  Menunggu dokter    ┃
 ┗━┻──────────────────────────────────┛
@@ -399,7 +399,7 @@ Notasi: `[ ]` tombol · `( )` radio · `[✓]` checkbox · `▼` dropdown · `__
 
 ```
 ┌──────────────────────────────┐
-│ Selamat malam, Suryani   ☁3 │  header + badge antrean
+│ Selamat siang, Suryani   ☁3 │  header + badge antrean
 ├──────────────────────────────┤
 │ ┌──────────────────────────┐ │
 │ │  ⊕                       │ │
@@ -416,12 +416,12 @@ Notasi: `[ ]` tombol · `( )` radio · `[✓]` checkbox · `▼` dropdown · `__
 │                              │
 │ Observasi Terakhir      Lihat│
 │ ┃┌────────────────────────┐  │
-│ ┃│ Mess A / 7   22:14     │  │  rail amber
+│ ┃│ Mess A / 7   09:14     │  │  rail amber
 │ ┃│ Budi Santoso           │  │
 │ ┃│ [Ada Temuan] Menunggu  │  │
 │ ┃└────────────────────────┘  │
 │ ┃┌────────────────────────┐  │
-│ ┃│ Mess A / 6   22:02     │  │  rail teal
+│ ┃│ Mess A / 6   09:02     │  │  rail teal
 │ ┃│ [Tertib] Menunggu      │  │
 │ ┃└────────────────────────┘  │
 ├──────────────────────────────┤
@@ -452,7 +452,7 @@ Notasi: `[ ]` tombol · `( )` radio · `[✓]` checkbox · `▼` dropdown · `__
 │                              │
 │ ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐ │
 │   ⏱ Observasi belum selesai  │  jika ada draft
-│   Mess A / 7 · mulai 22:03   │
+│   Mess A / 7 · mulai 09:03   │
 │   [Lanjutkan]  [Buang]       │
 │ └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘ │
 └──────────────────────────────┘
@@ -745,12 +745,12 @@ Grup "Fasilitas & Lingkungan" saat terbuka:
 ├──────────────────────────────┤
 │ 31 JULI 2026                 │  pemisah tanggal
 │ ┃┌────────────────────────┐  │
-│ ┃│ Mess A / 7      22:14  │  │
+│ ┃│ Mess A / 7      09:14  │  │
 │ ┃│ Budi Santoso · PT. PPA │  │
 │ ┃│ ⚠ Ada Temuan  ⏱ Menunggu│ │
 │ ┃└────────────────────────┘  │
 │ ┃┌────────────────────────┐  │
-│ ┃│ Mess A / 6      22:02  │  │
+│ ┃│ Mess A / 6      09:02  │  │
 │ ┃│ ✓ Tertib     ⏱ Menunggu│  │
 │ ┃└────────────────────────┘  │
 │ 30 JULI 2026                 │
@@ -778,7 +778,7 @@ Grup "Fasilitas & Lingkungan" saat terbuka:
 │ Tanggal     31 Juli 2026     │
 │ Lokasi      Mess A / 7       │
 │ Petugas     M. Suryani       │
-│ Dikirim     22:14 WITA       │
+│ Dikirim     09:14 WITA       │
 │                              │
 │ Data Karyawan                │
 │ Nama        Budi Santoso     │
@@ -1002,12 +1002,12 @@ Desktop ≥ `lg` — tabel: Nama · Email · Role · Status · Login Terakhir ·
 │                              │
 │ ┃┌────────────────────────┐  │  rail ungu
 │ ┃│ Mess A / 7             │  │
-│ ┃│ Dibuat 22:14 · 2 foto  │  │
+│ ┃│ Dibuat 09:14 · 2 foto  │  │
 │ ┃│ ☁ Menunggu koneksi     │  │
 │ ┃└────────────────────────┘  │
 │ ┃┌────────────────────────┐  │
 │ ┃│ Mess A / 6             │  │
-│ ┃│ Dibuat 22:02 · 1 foto  │  │
+│ ┃│ Dibuat 09:02 · 1 foto  │  │
 │ ┃│ ⟳ Percobaan 3 dari 5   │  │
 │ ┃└────────────────────────┘  │
 │ ┃┌────────────────────────┐  │  rail merah

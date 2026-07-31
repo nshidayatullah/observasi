@@ -19,6 +19,12 @@ Pencatatan observasi istirahat karyawan saat ini dilakukan manual di kertas dan 
 | Tidak ada ukuran kedisiplinan paramedis            | Manajemen tidak tahu jadwal kunjungan tercapai atau tidak |
 | Sinyal seluler lemah di area mess & rumah karyawan | Aplikasi online-only akan gagal dipakai di lapangan       |
 
+### 1.1 Waktu Observasi vs. Waktu Insiden
+
+Kunjungan observasi dilakukan **siang hari, pukul 08.00–12.00**, saat karyawan shift malam seharusnya sedang beristirahat/tidur di mess sebelum bertugas malam harinya. Namun mayoritas insiden kelelahan (fatigue) justru terjadi **malam hari**, saat karyawan sedang bekerja. Penyebabnya: sebagian karyawan tidak benar-benar memakai jam istirahat siang untuk tidur — waktu tersebut terpakai aktivitas lain (bermain game, menonton, mengurus keperluan pribadi, dll.) sehingga mereka masuk shift malam dalam kondisi kurang tidur.
+
+Implikasi produk: form observasi mencatat kondisi *saat kunjungan siang* (apakah karyawan ditemukan belum/tidak tidur pada jam istirahatnya), sebagai indikator dini risiko fatigue pada shift malam berikutnya — bukan pencatatan insiden itu sendiri. Lihat **Temuan** di Glosarium (§11).
+
 ## 2. Tujuan Produk
 
 Menyediakan sistem pencatatan observasi digital **mobile-first, offline-capable** yang:
