@@ -253,22 +253,24 @@ function Step1({
 
       {/* Aktivitas & Tidur */}
       <SectionTitle>Aktivitas & Tidur</SectionTitle>
-      <F label="Jam Tidur" htmlFor="sleepHours" required err={errors.sleepHours?.message}>
-        <Input
-          id="sleepHours"
-          placeholder="22:00 - 05:00"
-          hasError={!!errors.sleepHours}
-          {...register('sleepHours')}
-        />
-      </F>
-      <F label="Waktu Bangun" htmlFor="wakeUpTime" err={errors.wakeUpTime?.message}>
-        <Input
-          id="wakeUpTime"
-          placeholder="05:00"
-          hasError={!!errors.wakeUpTime}
-          {...register('wakeUpTime')}
-        />
-      </F>
+      <div className="grid grid-cols-2 gap-4">
+        <F label="Jam Tidur" htmlFor="sleepHours" required err={errors.sleepHours?.message}>
+          <Input
+            id="sleepHours"
+            type="time"
+            hasError={!!errors.sleepHours}
+            {...register('sleepHours')}
+          />
+        </F>
+        <F label="Waktu Bangun" htmlFor="wakeUpTime" err={errors.wakeUpTime?.message}>
+          <Input
+            id="wakeUpTime"
+            type="time"
+            hasError={!!errors.wakeUpTime}
+            {...register('wakeUpTime')}
+          />
+        </F>
+      </div>
 
       {/* Fasilitas & Lingkungan */}
       <SectionTitle>Fasilitas & Lingkungan</SectionTitle>
