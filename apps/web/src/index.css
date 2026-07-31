@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  /* Netral — ink-900 juga dipakai sebagai warna border universal (neo-brutalism) */
+  --color-ink-900: #0b0f14;
+  --color-ink-700: #263441;
+  --color-ink-500: #55677a;
+  --color-ink-300: #a8b5c2;
+  --color-ink-200: #d3dbe3;
+  --color-ink-100: #edf1f5;
+  --color-ink-50: #f4f1e9;
+
+  --color-primary-900: #073c42;
+  --color-primary-700: #0f5c63;
+  --color-primary-500: #17b4b0;
+  --color-primary-100: #dceff0;
+
+  --color-signal-700: #b45f12;
+  --color-signal-500: #ff9e1b;
+  --color-signal-100: #fdf0df;
+
+  --color-success-700: #1f5d3d;
+  --color-success-500: #38c172;
+  --color-success-100: #e1f2e8;
+
+  --color-danger-700: #93261d;
+  --color-danger-500: #ff4b3e;
+  --color-danger-100: #fbe6e4;
+
+  --color-offline-500: #8b5cf6;
+  --color-offline-100: #eeeaf7;
+
+  --font-display: "IBM Plex Sans Condensed", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+
+  --shadow-sm: 3px 3px 0 0 var(--color-ink-900);
+  --shadow-card: 4px 4px 0 0 var(--color-ink-900);
+  --shadow-raised: 6px 6px 0 0 var(--color-ink-900);
+}
+
+:root.dark {
+  --color-ink-50: #0e151d;
+  --color-ink-100: #161e28;
+  --color-ink-200: #24303c;
+  --color-ink-900: #f2f6f9;
+  --color-ink-500: #93a3b3;
+  --color-primary-500: #2fa0a8;
+  --color-signal-500: #f0a050;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-ink-50);
+  color: var(--color-ink-900);
+}
