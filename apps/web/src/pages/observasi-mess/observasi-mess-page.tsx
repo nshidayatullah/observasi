@@ -147,7 +147,12 @@ export default function MessObservationFormPage() {
           </p>
         ) : null}
 
-        <div className={cn('flex gap-3', step === 0 ? 'justify-end' : 'justify-between')}>
+        <div
+          className={cn(
+            'sticky bottom-0 -mx-4 flex gap-3 border-t-[3px] border-ink-900 bg-ink-50 px-4 py-3',
+            step === 0 ? 'justify-end' : 'justify-between',
+          )}
+        >
           {step > 0 ? (
             <Button type="button" variant="secondary" onClick={goBack} disabled={isSubmitting}>
               Kembali

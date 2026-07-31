@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Navigate, useLocation } from 'react-router';
+import { Eye, EyeOff } from 'lucide-react';
 import { loginSchema, type LoginInput } from '@observasi/shared';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,6 +14,7 @@ export default function LoginPage() {
   const { user } = useAuth();
   const location = useLocation();
   const login = useLogin();
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -53,13 +56,28 @@ export default function LoginPage() {
             <Label htmlFor="password" required>
               Password
             </Label>
-            <Input
-              id="password"
-              type="password"
-              autoComplete="current-password"
-              hasError={Boolean(errors.password)}
-              {...register('password')}
-            />
+            <div className="relative">
+              <Input
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                autoComplete="current-password"
+                hasError={Boolean(errors.password)}
+                className="pr-11"
+                {...register('password')}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((v) => !v)}
+                className="absolute right-0 top-0 flex h-12 w-11 items-center justify-center"
+                aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
+              >
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5 text-ink-500" strokeWidth={1.75} />
+                ) : (
+                  <Eye className="h-5 w-5 text-ink-500" strokeWidth={1.75} />
+                )}
+              </button>
+            </div>
             {errors.password ? (
               <p className="mt-1 text-sm text-danger-700">{errors.password.message}</p>
             ) : null}

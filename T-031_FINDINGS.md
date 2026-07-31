@@ -72,43 +72,39 @@
 
 ---
 
-## 🔶 Minor — saran perbaikan
+## 🔶 Minor — semua selesai kecuali m-08 (defer ke T-090)
 
-### m-01: Greeting pakai nama depan, bukan nama panggilan
+### ~~m-01: Greeting pakai nama depan, bukan nama panggilan~~ ✅ Fixed
 
-- **Beranda:** "Selamat sore, Muhammad" — wireframe "Selamat siang, Suryani". `name.split(" ")[0]` menghasilkan "Muhammad", bukan "Suryani". Di Indonesia, nama depan sering bukan nama panggilan.
+- Nama lengkap ditampilkan, bukan `split(' ')[0]`.
 
-### m-02: Tidak ada toggle visibility password
+### ~~m-02: Tidak ada toggle visibility password~~ ✅ Fixed
 
-- **Login:** Wireframe menampilkan ikon 👁 untuk toggle password. Tidak ada di implementasi.
+- Tombol Eye/EyeOff ditambahkan di field password login.
 
-### m-03: Tidak ada link "Lihat semua" di Observasi Terakhir
+### ~~m-03: Tidak ada link "Lihat semua"~~ ✅ Fixed
 
-- **Beranda:** Wireframe menunjukkan "Lihat" link di samping heading Observasi Terakhir.
+- Link "Lihat semua" ditambahkan di samping heading Observasi Terakhir.
 
-### m-04: Indikator kekuatan password belum ada
+### ~~m-04: Indikator kekuatan password belum ada~~ ✅ Fixed
 
-- **Ganti Password:** Wireframe SC-02 menampilkan progress bar kekuatan password. Implementasi belum ada.
+- Progress bar 3-segmen (Lemah / Cukup kuat / Kuat) dengan warna danger/signal/success.
 
-### m-05: Tombol Kirim tidak sticky bottom
+### ~~m-05: Tombol Kirim tidak sticky bottom~~ ✅ Fixed
 
-- **Form Mess:** Wireframe §6 rule 3: "Tombol aksi form melekat di bawah (sticky bottom)".
+- Tombol navigasi form Mess kini sticky bottom dengan border-top dan latar solid.
 
-### m-06: EmptyState komponen ada tapi belum dipakai di semua daftar
+### ~~m-06: EmptyState belum dipakai di semua daftar~~ ✅ Sudah ada
 
-- **Daftar yang sudah pakai EmptyState:** Beranda (observasi terakhir kosong)
-- **Yang belum:** Riwayat (saat filter tidak menghasilkan data), Antrean Persetujuan
+- Riwayat dan Antrean Persetujuan sudah pakai EmptyState.
 
-### m-07: Dark mode belum ada toggle
+### ~~m-07: Dark mode belum ada toggle~~ ✅ Fixed
 
-- **§3:** "Mode gelap mengikuti preferensi sistem, dengan toggle manual di halaman Profil."
-- **Aktual:** Mode gelap ada di CSS (`:root.dark`) tapi tidak ada toggle di Profil.
+- Toggle switch di halaman Profil, mengikuti preferensi sistem saat pertama kali, disimpan di localStorage.
 
-### m-08: IBM Plex font dari Google Fonts, bukan self-hosted
+### m-08: IBM Plex font dari Google Fonts, bukan self-hosted (→ T-090)
 
-- **§2.2:** "Dimuat lokal (self-hosted, subset latin) supaya PWA tetap bekerja offline."
-- **Aktual:** Menggunakan `@import url("https://fonts.googleapis.com/...")`.
-- **Refs:** T-090
+- Defer ke T-090 (PWA — perlu self-hosted subset latin untuk offline).
 
 ---
 

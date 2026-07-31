@@ -19,7 +19,7 @@ export default function HomePage() {
   if (user.role === ROLE.PARAMEDIC) {
     const mine = (observations ?? []).filter((o) => o.paramedicId === user.id).slice(0, 3);
     return (
-      <AppShell title={`${greeting}, ${user.name.split(' ')[0]}`}>
+      <AppShell title={`${greeting}, ${user.name}`}>
         <Link
           to="/observasi/baru"
           className="flex h-24 items-center justify-center gap-2 rounded-md border-[3px] border-ink-900 bg-primary-500 font-display text-lg font-semibold text-ink-900 shadow-raised active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
@@ -45,7 +45,12 @@ export default function HomePage() {
           <span className="font-mono text-sm text-ink-500">60%</span>
         </Card>
 
-        <h2 className="font-display mt-6 text-lg font-semibold text-ink-900">Observasi Terakhir</h2>
+        <div className="mt-6 flex items-center justify-between">
+          <h2 className="font-display text-lg font-semibold text-ink-900">Observasi Terakhir</h2>
+          <Link to="/observasi" className="text-sm font-medium text-primary-700">
+            Lihat semua
+          </Link>
+        </div>
         <div className="mt-2 flex flex-col gap-3">
           {mine.length === 0 ? (
             <EmptyState title="Belum ada observasi. Mulai observasi pertama dari tombol di atas." />
