@@ -79,9 +79,9 @@ export default function UserListPage() {
                 <span
                   className={cn(
                     'rounded-sm border-2 border-ink-900 px-1.5 py-0.5 text-xs font-medium text-ink-900',
-                    u.status === USER_STATUS.ACTIVE && 'bg-success-100',
-                    u.status === USER_STATUS.INACTIVE && 'bg-ink-200',
-                    u.status === USER_STATUS.LOCKED && 'bg-signal-100',
+                    u.status === USER_STATUS.ACTIVE && 'bg-success-500',
+                    u.status === USER_STATUS.INACTIVE && 'bg-ink-300',
+                    u.status === USER_STATUS.LOCKED && 'bg-signal-500',
                   )}
                 >
                   {USER_STATUS_LABEL[u.status]}
