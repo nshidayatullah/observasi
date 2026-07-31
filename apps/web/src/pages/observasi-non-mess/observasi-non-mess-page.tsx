@@ -451,22 +451,6 @@ function Step2({
           <option value="Lainnya">Lainnya</option>
         </select>
       </F>
-      <F label="Keluarga dari (A.N)" htmlFor="familyOf" err={errors.familyOf?.message}>
-        <Input id="familyOf" hasError={!!errors.familyOf} {...register('familyOf')} />
-      </F>
-      <F
-        label="Jabatan di Perusahaan"
-        htmlFor="familyOfPosition"
-        err={errors.familyOfPosition?.message}
-      >
-        <Input
-          id="familyOfPosition"
-          placeholder="Kosongkan jika tidak"
-          hasError={!!errors.familyOfPosition}
-          {...register('familyOfPosition')}
-        />
-      </F>
-
       <SectionTitle>Pemahaman Fatigue</SectionTitle>
       <F
         label="Apa yang Anda ketahui tentang fatigue?"
