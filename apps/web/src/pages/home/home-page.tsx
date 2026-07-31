@@ -133,9 +133,12 @@ function DashboardKpi() {
       {/* Tren Bulanan */}
       <Card className="p-4">
         <h2 className="text-label font-semibold text-ink-700">Tren Bulanan</h2>
-        <div className="mt-3 flex items-end gap-2" style={{ height: 120 }}>
+        <div className="mt-3 flex items-end gap-2" style={{ height: 130 }}>
           {TREN_BULANAN.map((m, i) => (
             <div key={i} className="flex flex-1 flex-col items-center gap-1">
+              <span className="text-[10px] font-mono font-medium text-ink-700">
+                {m.mess + m.rumah}
+              </span>
               <div className="flex w-full flex-col justify-end gap-0.5" style={{ height: 80 }}>
                 <div
                   className="w-full bg-primary-500 border border-ink-900 rounded-t-sm"
