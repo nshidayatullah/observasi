@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { CalendarDays, MapPin, ChevronLeft, ChevronRight, Plus, Trash2 } from 'lucide-react';
+import { CalendarDays, MapPin, ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import { AppShell } from '@/components/layout/app-shell';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -31,11 +31,71 @@ type RosterEntry = {
   assignments: { date: string; type: 'MESS' | 'NON_MESS'; location: string }[];
 };
 
+type CalendarDay = {
+  day: number;
+  date: string; // YYYY-MM-DD
+  isCurrentMonth: boolean;
+  assignments: { name: string; type: 'MESS' | 'NON_MESS'; location: string }[];
+};
+
+const DAYS = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
 
 function formatMonth(ym: string) {
   const [y, m] = ym.split('-');
   return `${MONTHS[Number(m) - 1]} ${y}`;
+}
+
+function shortName(name: string) {
+  const parts = name.split(' ');
+  return parts.length > 1 ? parts[0]![0]! + parts[1]![0]! : parts[0]!.slice(0, 2).toUpperCase();
+}
+
+function buildCalendar(year: number, month: number, roster: RosterEntry[]): CalendarDay[] {
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const firstDayOfWeek = new Date(year, month - 1, 1).getDay(); // 0=Minggu -> kita ubah ke 0=Senin
+  const startOffset = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1; // Hari mulai Senin
+
+  // Map assignments by date
+  const byDate = new Map<string, CalendarDay['assignments']>();
+  for (const r of roster) {
+    for (const a of r.assignments) {
+      const entry = byDate.get(a.date) ?? [];
+      entry.push({ name: r.paramedicName, type: a.type, location: a.location });
+      byDate.set(a.date, entry);
+    }
+  }
+
+  const days: CalendarDay[] = [];
+
+  // Hari kosong sebelum tanggal 1
+  const prevMonth = month === 1 ? 12 : month - 1;
+  const prevYear = month === 1 ? year - 1 : year;
+  const prevDays = new Date(prevYear, prevMonth, 0).getDate();
+  for (let i = startOffset - 1; i >= 0; i--) {
+    const d = prevDays - i;
+    const date = `${prevYear}-${String(prevMonth).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    days.push({ day: d, date, isCurrentMonth: false, assignments: byDate.get(date) ?? [] });
+  }
+
+  // Hari bulan ini
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    days.push({ day: d, date, isCurrentMonth: true, assignments: byDate.get(date) ?? [] });
+  }
+
+  // Hari setelah akhir bulan
+  const remaining = 7 - (days.length % 7);
+  if (remaining < 7) {
+    const nextMonth = month === 12 ? 1 : month + 1;
+    const nextYear = month === 12 ? year + 1 : year;
+    for (let d = 1; d <= remaining; d++) {
+      const date = `${nextYear}-${String(nextMonth).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+      days.push({ day: d, date, isCurrentMonth: false, assignments: byDate.get(date) ?? [] });
+    }
+  }
+
+  return days;
 }
 
 export default function SchedulePage() {
@@ -106,7 +166,7 @@ function ParamedicSchedule() {
 function SuperadminRoster() {
   const now = new Date();
   const [year, setYear] = useState(now.getFullYear());
-  const [month, setMonth] = useState(now.getMonth() + 1); // 1-12
+  const [month, setMonth] = useState(now.getMonth() + 1);
 
   const monthKey = `${year}-${String(month).padStart(2, '0')}`;
 
@@ -128,51 +188,15 @@ function SuperadminRoster() {
     } else setMonth(month + 1);
   };
 
-  // Hardcoded roster data untuk mock
-  const roster: RosterEntry[] = data ?? [
-    {
-      id: 1,
-      paramedicId: 1,
-      paramedicName: 'Muhammad Suryani',
-      month: monthKey,
-      messDays: 18,
-      nonMessDays: 6,
-      assignments: [
-        { date: '2026-07-01', type: 'MESS', location: 'Mess A' },
-        { date: '2026-07-03', type: 'NON_MESS', location: 'Satui' },
-        { date: '2026-07-05', type: 'MESS', location: 'Mess B' },
-      ],
-    },
-    {
-      id: 2,
-      paramedicId: 4,
-      paramedicName: 'Agung Priambara',
-      month: monthKey,
-      messDays: 15,
-      nonMessDays: 4,
-      assignments: [
-        { date: '2026-07-02', type: 'MESS', location: 'Mess C' },
-        { date: '2026-07-04', type: 'NON_MESS', location: 'Satui' },
-      ],
-    },
-    {
-      id: 3,
-      paramedicId: 5,
-      paramedicName: 'Rina Andriani',
-      month: monthKey,
-      messDays: 20,
-      nonMessDays: 8,
-      assignments: [
-        { date: '2026-07-01', type: 'MESS', location: 'Mess GL' },
-        { date: '2026-07-06', type: 'NON_MESS', location: 'Satui' },
-      ],
-    },
-  ];
+  const roster: RosterEntry[] = data ?? [];
+
+  const calendar = useMemo(() => buildCalendar(year, month, roster), [year, month, roster]);
+  const today = new Date().toISOString().slice(0, 10);
 
   return (
     <AppShell title="Roster Paramedis">
       {/* Navigasi bulan */}
-      <div className="mb-5 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between">
         <button
           type="button"
           onClick={prevMonth}
@@ -191,26 +215,42 @@ function SuperadminRoster() {
       </div>
 
       {/* Ringkasan */}
-      <div className="mb-5 grid grid-cols-3 gap-3">
-        <Card className="p-3 text-center">
-          <p className="font-display text-xl font-semibold text-ink-900">{roster.length}</p>
-          <p className="text-xs text-ink-500">Paramedis</p>
+      <div className="mb-4 grid grid-cols-3 gap-2">
+        <Card className="p-2 text-center">
+          <p className="font-display text-lg font-semibold text-ink-900">{roster.length}</p>
+          <p className="text-[11px] text-ink-500">Paramedis</p>
         </Card>
-        <Card className="p-3 text-center">
-          <p className="font-display text-xl font-semibold text-ink-900">
+        <Card className="p-2 text-center">
+          <p className="font-display text-lg font-semibold text-ink-900">
             {roster.reduce((s, r) => s + r.messDays, 0)}
           </p>
-          <p className="text-xs text-ink-500">Hari Mess</p>
+          <p className="text-[11px] text-ink-500">Hari Mess</p>
         </Card>
-        <Card className="p-3 text-center">
-          <p className="font-display text-xl font-semibold text-ink-900">
+        <Card className="p-2 text-center">
+          <p className="font-display text-lg font-semibold text-ink-900">
             {roster.reduce((s, r) => s + r.nonMessDays, 0)}
           </p>
-          <p className="text-xs text-ink-500">Hari Rumah</p>
+          <p className="text-[11px] text-ink-500">Hari Rumah</p>
         </Card>
       </div>
 
-      {/* Daftar roster */}
+      {/* Legenda */}
+      <div className="mb-3 flex gap-4 text-xs">
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block h-2.5 w-2.5 rounded-sm border border-ink-900 bg-primary-500" />{' '}
+          Mess
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block h-2.5 w-2.5 rounded-sm border border-ink-900 bg-signal-500" />{' '}
+          Rumah
+        </span>
+        <span className="flex items-center gap-1.5 text-ink-500">
+          <span className="inline-block h-2.5 w-2.5 rounded-sm border border-ink-300 bg-ink-100" />{' '}
+          Libur
+        </span>
+      </div>
+
+      {/* Kalender */}
       {isLoading ? (
         <div className="flex flex-col gap-3">
           {[1, 2].map((i) => (
@@ -218,10 +258,69 @@ function SuperadminRoster() {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col gap-4">
-          {roster.map((r) => (
-            <RosterCard key={r.id} entry={r} />
-          ))}
+        <div className="overflow-hidden rounded-md border-2 border-ink-900">
+          {/* Header hari */}
+          <div className="grid grid-cols-7 bg-ink-900 text-white">
+            {DAYS.map((d) => (
+              <div key={d} className="py-1.5 text-center text-[11px] font-medium">
+                {d}
+              </div>
+            ))}
+          </div>
+
+          {/* Grid tanggal */}
+          <div className="grid grid-cols-7">
+            {calendar.map((cell, i) => {
+              const isToday = cell.date === today;
+
+              return (
+                <div
+                  key={i}
+                  className={cn(
+                    'min-h-[72px] border-b border-r border-ink-200 p-1',
+                    'border-b-ink-200 border-r-ink-200',
+                    (i + 1) % 7 === 0 && 'border-r-0', // last column no right border
+                    !cell.isCurrentMonth && 'bg-ink-50 opacity-40',
+                  )}
+                >
+                  <span
+                    className={cn(
+                      'inline-flex h-5 w-5 items-center justify-center rounded-sm text-[11px] font-medium',
+                      isToday &&
+                        cell.isCurrentMonth &&
+                        'border border-ink-900 bg-primary-500 text-ink-900',
+                      !cell.isCurrentMonth && 'text-ink-400',
+                    )}
+                  >
+                    {cell.day}
+                  </span>
+
+                  {/* Assignment dots */}
+                  <div className="mt-0.5 flex flex-wrap gap-0.5">
+                    {cell.assignments.slice(0, 4).map((a, j) => (
+                      <span
+                        key={j}
+                        title={`${a.name} — ${a.type === 'MESS' ? 'Mess' : 'Rumah'} · ${a.location}`}
+                        className={cn(
+                          'block truncate rounded-sm px-1 py-px text-[10px] font-medium leading-tight',
+                          a.type === 'MESS'
+                            ? 'bg-primary-500 text-ink-900'
+                            : 'bg-signal-500 text-ink-900',
+                        )}
+                      >
+                        {shortName(a.name)}
+                      </span>
+                    ))}
+                    {cell.assignments.length > 4 ? (
+                      <span className="text-[10px] text-ink-500">
+                        +{cell.assignments.length - 4}
+                      </span>
+                    ) : null}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
 
@@ -230,74 +329,5 @@ function SuperadminRoster() {
         Tambah Roster
       </Button>
     </AppShell>
-  );
-}
-
-function RosterCard({ entry }: { entry: RosterEntry }) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <Card className="overflow-hidden p-0">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="flex w-full items-center gap-4 px-4 py-3 text-left"
-      >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border-2 border-ink-900 bg-primary-100">
-          <span className="font-display text-sm font-semibold text-primary-900">
-            {entry.paramedicName.charAt(0)}
-          </span>
-        </div>
-        <div className="min-w-0 flex-1">
-          <p className="truncate font-medium text-ink-900">{entry.paramedicName}</p>
-          <p className="text-xs text-ink-500">
-            Mess {entry.messDays} hari · Rumah {entry.nonMessDays} hari
-          </p>
-        </div>
-        <div className="flex items-center gap-3 text-right">
-          <div>
-            <p className="font-mono text-sm text-ink-900">{entry.messDays + entry.nonMessDays}</p>
-            <p className="text-xs text-ink-500">total</p>
-          </div>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              alert(`Hapus roster ${entry.paramedicName}`);
-            }}
-            className="flex h-8 w-8 items-center justify-center rounded-sm border-2 border-ink-900 bg-white"
-            aria-label={`Hapus roster ${entry.paramedicName}`}
-          >
-            <Trash2 className="h-3.5 w-3.5 text-danger-700" strokeWidth={2} />
-          </button>
-        </div>
-      </button>
-
-      {open ? (
-        <div className="border-t-2 border-ink-200 px-4 py-3">
-          <p className="mb-2 text-xs font-medium text-ink-500">Detail Penugasan</p>
-          <div className="flex flex-col gap-1.5">
-            {entry.assignments.map((a, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between rounded-sm border-2 border-ink-200 bg-ink-50 px-3 py-1.5"
-              >
-                <span className="text-sm text-ink-900">{a.date}</span>
-                <span
-                  className={cn(
-                    'rounded-sm px-1.5 py-0.5 text-xs font-medium',
-                    a.type === 'MESS'
-                      ? 'bg-primary-100 text-primary-900'
-                      : 'bg-signal-100 text-signal-700',
-                  )}
-                >
-                  {a.type === 'MESS' ? 'Mess' : 'Rumah'} · {a.location}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
-    </Card>
   );
 }
