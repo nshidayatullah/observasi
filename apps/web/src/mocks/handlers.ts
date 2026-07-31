@@ -3,6 +3,7 @@ import { OBSERVATION_STATUS, USER_STATUS } from '@observasi/shared';
 import {
   mockUsers,
   mockMessObservations,
+  mockNonMessObservations,
   mockMessComplexes,
   mockKpiSummary,
   type MockMessObservation,
@@ -193,6 +194,28 @@ export const handlers = [
 
   http.get(`${BASE}/kpi/summary`, () => {
     return HttpResponse.json({ data: mockKpiSummary });
+  }),
+
+  http.get(`${BASE}/observations/non-mess`, ({ request }) => {
+    const url = new URL(request.url);
+    const status = url.searchParams.get('status');
+    const filtered = status
+      ? mockNonMessObservations.filter((o) => o.status === status)
+      : mockNonMessObservations;
+    return HttpResponse.json({
+      data: filtered,
+      meta: { page: 1, perPage: 25, total: filtered.length, totalPages: 1 },
+    });
+  }),
+
+  http.get(`${BASE}/observations/non-mess/:id`, ({ params }) => {
+    const obs = mockNonMessObservations.find((o) => o.id === Number(params['id']));
+    if (!obs)
+      return HttpResponse.json(
+        { error: { code: 'NOT_FOUND', message: 'Tidak ditemukan.' } },
+        { status: 404 },
+      );
+    return HttpResponse.json({ data: obs });
   }),
 
   http.get(`${BASE}/schedules`, () => {
