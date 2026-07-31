@@ -1,0 +1,10 @@
+// Schema domain penuh ditulis di Fase 5 (T-110) sesuai 03_DATABASE_SPEC.md,
+// setelah approval Fase 3 (Frontend + Mock) — lihat rencana eksekusi.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
