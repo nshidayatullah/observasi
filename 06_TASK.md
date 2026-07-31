@@ -16,16 +16,15 @@
 
 ## FASE 0 — Setup (prasyarat semua fase)
 
-| ID    | Task                                                                                                                                                    | Acuan        | Status |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------ |
-| T-001 | Inisialisasi monorepo pnpm workspaces (`apps/web`, `apps/api`, `packages/shared`)                                                                       | 05 §1        | `[x]`  |
-| T-002 | Setup `apps/web`: Vite 6 + React 19 + TypeScript strict + Tailwind v4                                                                                   | 05 §2, §4.4  | `[x]`  |
-| T-003 | Setup shadcn/ui, install komponen dasar (button, input, label, select, radio-group, checkbox, textarea, dialog, sheet, table, card, badge, toast, form) | 09 §2        | `[ ]`  |
-| T-004 | Setup `apps/api`: NestJS 11 + Prisma 6 + PostgreSQL via docker-compose                                                                                  | 05 §1.2      | `[x]`  |
-| T-005 | Setup `packages/shared`: enum, konstanta, skema Zod kosong siap diisi                                                                                   | 05 §1, 03 §2 | `[x]`  |
-| T-006 | Konfigurasi ESLint, Prettier, Husky, lint-staged, commitlint                                                                                            | 05 §9        | `[x]`  |
-| T-007 | Setup CI GitHub Actions: lint, typecheck, test, build                                                                                                   | 05 §9        | `[x]`  |
-| T-008 | Buat `.env.example` untuk web dan api; validasi env dengan Zod di backend                                                                               | 05 §11, §5.5 | `[x]`  |
+| ID    | Task                                                                              | Acuan        | Status |
+| ----- | --------------------------------------------------------------------------------- | ------------ | ------ |
+| T-001 | Inisialisasi monorepo pnpm workspaces (`apps/web`, `apps/api`, `packages/shared`) | 05 §1        | `[x]`  |
+| T-002 | Setup `apps/web`: Vite 6 + React 19 + TypeScript strict + Tailwind v4             | 05 §2, §4.4  | `[x]`  |
+| T-004 | Setup `apps/api`: NestJS 11 + Prisma 6 + PostgreSQL via docker-compose            | 05 §1.2      | `[x]`  |
+| T-005 | Setup `packages/shared`: enum, konstanta, skema Zod kosong siap diisi             | 05 §1, 03 §2 | `[x]`  |
+| T-006 | Konfigurasi ESLint, Prettier, Husky, lint-staged, commitlint                      | 05 §9        | `[x]`  |
+| T-007 | Setup CI GitHub Actions: lint, typecheck, test, build                             | 05 §9        | `[x]`  |
+| T-008 | Buat `.env.example` untuk web dan api; validasi env dengan Zod di backend         | 05 §11, §5.5 | `[x]`  |
 
 **DoD Fase 0:** `pnpm dev` menjalankan web di :5173 dan api di :3000; `pnpm lint && pnpm typecheck` lolos; commit dengan format salah ditolak.
 
