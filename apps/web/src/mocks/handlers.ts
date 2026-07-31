@@ -5,6 +5,8 @@ import {
   mockMessObservations,
   mockNonMessObservations,
   mockMessComplexes,
+  mockBlok,
+  mockLokasi,
   mockKpiSummary,
   type MockMessObservation,
   type MockUser,
@@ -294,6 +296,14 @@ export const handlers = [
         },
       ],
     });
+  }),
+
+  http.get(`${BASE}/master-data/blok`, () => {
+    return HttpResponse.json({ data: mockBlok });
+  }),
+
+  http.get(`${BASE}/master-data/lokasi`, () => {
+    return HttpResponse.json({ data: mockLokasi });
   }),
 
   http.get(`${BASE}/schedules`, () => {

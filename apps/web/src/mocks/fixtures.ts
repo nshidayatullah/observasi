@@ -374,6 +374,43 @@ export const mockMessComplexes = [
   { id: 6, name: 'Mess D', roomCount: 8 },
   { id: 7, name: 'Mess E', roomCount: 8 },
   { id: 8, name: 'Mess F', roomCount: 8 },
+  { id: 9, name: 'Mess G', roomCount: 6 },
+  { id: 10, name: 'Mess H', roomCount: 6 },
+  { id: 11, name: 'Mess KPR', roomCount: 20 },
+  { id: 12, name: 'Mess Baru', roomCount: 16 },
+];
+
+export const mockBlok = [
+  { id: 1, name: 'Blok A', location: 'Site BIB', messCount: 2, messList: ['Mess A', 'Mess B'] },
+  { id: 2, name: 'Blok B', location: 'Site BIB', messCount: 2, messList: ['Mess C', 'Mess D'] },
+  {
+    id: 3,
+    name: 'Blok C',
+    location: 'Site BIB',
+    messCount: 3,
+    messList: ['Mess GL', 'Mess Mandala', 'Mess E'],
+  },
+  { id: 4, name: 'Blok D', location: 'Site BIB', messCount: 2, messList: ['Mess F', 'Mess G'] },
+  {
+    id: 5,
+    name: 'Blok E',
+    location: 'Site BIB',
+    messCount: 3,
+    messList: ['Mess H', 'Mess KPR', 'Mess Baru'],
+  },
+];
+
+export const mockLokasi = [
+  { id: 1, name: 'Satui', kecamatan: 'Satui', kabupaten: 'Tanah Bumbu' },
+  { id: 2, name: 'Simpang Empat', kecamatan: 'Simpang Empat', kabupaten: 'Tanah Bumbu' },
+  { id: 3, name: 'Batu Licin', kecamatan: 'Batu Licin', kabupaten: 'Tanah Bumbu' },
+  { id: 4, name: 'Kusan Hilir', kecamatan: 'Kusan Hilir', kabupaten: 'Tanah Bumbu' },
+  { id: 5, name: 'Angsana', kecamatan: 'Angsana', kabupaten: 'Tanah Bumbu' },
+  { id: 6, name: 'Kuranji', kecamatan: 'Kuranji', kabupaten: 'Tanah Bumbu' },
+  { id: 7, name: 'Karang Bintang', kecamatan: 'Karang Bintang', kabupaten: 'Tanah Bumbu' },
+  { id: 8, name: 'Mantewe', kecamatan: 'Mantewe', kabupaten: 'Tanah Bumbu' },
+  { id: 9, name: 'Sungai Loban', kecamatan: 'Sungai Loban', kabupaten: 'Tanah Bumbu' },
+  { id: 10, name: 'Teluk Kepayang', kecamatan: 'Teluk Kepayang', kabupaten: 'Tanah Bumbu' },
 ];
 
 /* ── KPI ────────────────────────────────────────────────── */
