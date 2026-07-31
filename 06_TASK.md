@@ -52,16 +52,16 @@ Wireframe dibuat sebagai low-fidelity di 08_UI_GUIDE.md, lalu diverifikasi ke pa
 | ID    | Task                                                             | Acuan    | Status |
 | ----- | ---------------------------------------------------------------- | -------- | ------ |
 | T-020 | Tetapkan design token: warna, tipografi, spacing, radius, shadow | 08 §2–§4 | `[x]`  |
-| T-021 | Wireframe SC-01 Login, SC-02 Ganti Password Wajib                | 08 §8    | `[ ]`  |
-| T-022 | Wireframe SC-03 Beranda (3 varian role)                          | 08 §8    | `[ ]`  |
-| T-023 | Wireframe SC-04 Pilih Tipe Observasi                             | 08 §8    | `[ ]`  |
-| T-024 | Wireframe SC-05 Form Mess — 3 langkah + ringkasan                | 08 §8    | `[ ]`  |
-| T-025 | Wireframe SC-06 Form Non-Mess — 3 langkah + ringkasan            | 08 §8    | `[ ]`  |
-| T-026 | Wireframe SC-07 Riwayat, SC-08 Detail Observasi                  | 08 §8    | `[ ]`  |
-| T-027 | Wireframe SC-09 Antrean Persetujuan + dialog approve/reject      | 08 §8    | `[ ]`  |
-| T-028 | Wireframe SC-10 KPI, SC-11 Jadwal                                | 08 §8    | `[ ]`  |
-| T-029 | Wireframe SC-12–14 Manajemen Pengguna, SC-15 Master Mess         | 08 §8    | `[ ]`  |
-| T-030 | Wireframe SC-16 Laporan, SC-17 Profil, SC-18 Antrean Sinkron     | 08 §8    | `[ ]`  |
+| T-021 | Wireframe SC-01 Login, SC-02 Ganti Password Wajib                | 08 §8    | `[x]`  |
+| T-022 | Wireframe SC-03 Beranda (3 varian role)                          | 08 §8    | `[x]`  |
+| T-023 | Wireframe SC-04 Pilih Tipe Observasi                             | 08 §8    | `[x]`  |
+| T-024 | Wireframe SC-05 Form Mess — 3 langkah + ringkasan                | 08 §8    | `[x]`  |
+| T-025 | Wireframe SC-06 Form Non-Mess — 3 langkah + ringkasan            | 08 §8    | `[x]`  |
+| T-026 | Wireframe SC-07 Riwayat, SC-08 Detail Observasi                  | 08 §8    | `[x]`  |
+| T-027 | Wireframe SC-09 Antrean Persetujuan + dialog approve/reject      | 08 §8    | `[x]`  |
+| T-028 | Wireframe SC-10 KPI, SC-11 Jadwal                                | 08 §8    | `[x]`  |
+| T-029 | Wireframe SC-12–14 Manajemen Pengguna, SC-15 Master Mess         | 08 §8    | `[x]`  |
+| T-030 | Wireframe SC-16 Laporan, SC-17 Profil, SC-18 Antrean Sinkron     | 08 §8    | `[x]`  |
 | T-031 | Uji wireframe form ke 2 paramedis; catat temuan dan revisi       | —        | `[~]`  |
 
 **DoD Fase 2:** Semua layar di 01_USER_FLOW §1 punya wireframe. Paramedis bisa menjelaskan alur pengisian form tanpa dibantu.
@@ -105,7 +105,7 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 | T-064 | SC-05 Mess Bagian 2 (Temuan = Ya): data karyawan, tekanan darah, aktivitas, alasan, foto | 04 §4              | `[~]`  |
 | T-065 | SC-05 Mess Bagian 3 (Temuan = Tidak): foto kondisi mess                                  | 04 §4              | `[ ]`  |
 | T-066 | SC-05 Ringkasan & Kirim, dengan tombol edit per bagian                                   | 01 §4              | `[x]`  |
-| T-067 | Skema Zod form Non-Mess termasuk aturan kondisional pet/noise/lainnya                    | 04 §5              | `[ ]`  |
+| T-067 | Skema Zod form Non-Mess termasuk aturan kondisional pet/noise/lainnya                    | 04 §5              | `[x]`  |
 | T-068 | SC-06 Non-Mess Bagian 1: identitas karyawan + kondisi rumah + lingkungan (22 field)      | 04 §5              | `[ ]`  |
 | T-069 | SC-06 Non-Mess Bagian 2: kuesioner fatigue keluarga (10 field)                           | 04 §5              | `[ ]`  |
 | T-070 | SC-06 Non-Mess Bagian 3: petugas, lokasi, multi-foto                                     | 04 §5              | `[ ]`  |
@@ -120,8 +120,8 @@ Bangun seluruh UI dengan data palsu. Belum ada backend.
 | ID    | Task                                                                              | Acuan        | Status |
 | ----- | --------------------------------------------------------------------------------- | ------------ | ------ |
 | T-080 | Halaman SC-09 Antrean Persetujuan: urut terlama, badge aging, filter              | 01 §6        | `[~]`  |
-| T-081 | Dialog Setujui / Tolak dengan catatan medis (wajib saat menolak)                  | 10 BR-APR-02 | `[ ]`  |
-| T-082 | Halaman SC-10 Dashboard KPI: kartu ringkasan + tabel per paramedis                | 04 §10       | `[ ]`  |
+| T-081 | Dialog Setujui / Tolak dengan catatan medis (wajib saat menolak)                  | 10 BR-APR-02 | `[x]`  |
+| T-082 | Halaman SC-10 Dashboard KPI: kartu ringkasan + tabel per paramedis                | 04 §10       | `[x]`  |
 | T-083 | Halaman SC-11 Jadwal: kalender paramedis, tabel CRUD Superadmin                   | 04 §9        | `[ ]`  |
 | T-084 | Halaman SC-12 Daftar Pengguna: tabel, pencarian, filter, pagination               | 04 §3        | `[~]`  |
 | T-085 | Halaman SC-13/14 Tambah & Edit Pengguna + dialog password sementara sekali tampil | 04 §3        | `[ ]`  |
