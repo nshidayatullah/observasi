@@ -49,7 +49,7 @@ export default function UserFormPage() {
             size="full"
             onClick={() => {
               void navigator.clipboard.writeText(password);
-              navigate('/pengguna');
+              navigate('/manajemen/pengguna');
             }}
           >
             Salin & Tutup

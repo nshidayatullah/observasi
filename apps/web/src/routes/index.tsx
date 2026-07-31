@@ -23,8 +23,12 @@ const NonMessObservationFormPage = lazy(
 );
 const ApprovalQueuePage = lazy(() => import('@/pages/approval-queue/approval-queue-page'));
 const SchedulePage = lazy(() => import('@/pages/schedule/schedule-page'));
+const ManajemenPage = lazy(() => import('@/pages/manajemen/manajemen-page'));
 const UserListPage = lazy(() => import('@/pages/users/user-list-page'));
 const UserFormPage = lazy(() => import('@/pages/users/user-form-page'));
+const MasterMessPage = lazy(() => import('@/pages/manajemen/master-mess-page'));
+const MasterBlokPage = lazy(() => import('@/pages/manajemen/master-blok-page'));
+const MasterLokasiPage = lazy(() => import('@/pages/manajemen/master-lokasi-page'));
 const ProfilePage = lazy(() => import('@/pages/profile/profile-page'));
 const NotFoundPage = lazy(() => import('@/pages/errors/not-found-page'));
 const ForbiddenPage = lazy(() => import('@/pages/errors/forbidden-page'));
@@ -63,8 +67,12 @@ export function AppRoutes() {
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={[ROLE.SUPERADMIN]} />}>
-          <Route path="/pengguna" element={<UserListPage />} />
-          <Route path="/pengguna/baru" element={<UserFormPage />} />
+          <Route path="/manajemen" element={<ManajemenPage />} />
+          <Route path="/manajemen/pengguna" element={<UserListPage />} />
+          <Route path="/manajemen/pengguna/baru" element={<UserFormPage />} />
+          <Route path="/manajemen/mess" element={<MasterMessPage />} />
+          <Route path="/manajemen/blok" element={<MasterBlokPage />} />
+          <Route path="/manajemen/lokasi" element={<MasterLokasiPage />} />
         </Route>
 
         <Route path="/403" element={<ForbiddenPage />} />

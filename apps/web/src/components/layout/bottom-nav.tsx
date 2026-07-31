@@ -26,7 +26,7 @@ const DOCTOR_ITEMS: NavItem[] = [
 
 const SUPERADMIN_ITEMS: NavItem[] = [
   { to: '/beranda', label: 'Beranda', icon: Home },
-  { to: '/pengguna', label: 'Pengguna', icon: Users },
+  { to: '/manajemen', label: 'Manajemen', icon: Users },
   { to: '/jadwal', label: 'Jadwal', icon: CalendarDays },
   { to: '/observasi', label: 'Observasi', icon: ClipboardList },
   { to: '/profil', label: 'Profil', icon: User },

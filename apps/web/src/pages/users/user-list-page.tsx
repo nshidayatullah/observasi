@@ -18,7 +18,7 @@ export default function UserListPage() {
     <AppShell title="Pengguna">
       <div className="mb-4 flex items-center justify-between">
         <p className="text-sm text-ink-500">{users ? `${users.length} pengguna` : 'Memuat…'}</p>
-        <Button size="sm" onClick={() => navigate('/pengguna/baru')}>
+        <Button size="sm" onClick={() => navigate('/manajemen/pengguna/baru')}>
           <Plus className="h-4 w-4" strokeWidth={2} />
           Tambah
         </Button>
