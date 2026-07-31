@@ -435,12 +435,19 @@ function Step2({
         htmlFor="respondentRelation"
         err={errors.respondentRelation?.message}
       >
-        <Input
+        <select
           id="respondentRelation"
-          placeholder="Istri / Suami / Anak"
-          hasError={!!errors.respondentRelation}
+          className="h-12 w-full rounded-md border-[3px] border-ink-900 bg-white px-3 text-base text-ink-900"
           {...register('respondentRelation')}
-        />
+        >
+          <option value="">Pilih hubungan</option>
+          <option value="Istri">Istri</option>
+          <option value="Suami">Suami</option>
+          <option value="Anak">Anak</option>
+          <option value="Orang Tua">Orang Tua</option>
+          <option value="Saudara">Saudara</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
       </F>
       <F label="Keluarga dari (A.N)" htmlFor="familyOf" err={errors.familyOf?.message}>
         <Input id="familyOf" hasError={!!errors.familyOf} {...register('familyOf')} />
