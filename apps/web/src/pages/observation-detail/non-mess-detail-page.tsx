@@ -157,6 +157,14 @@ export default function NonMessDetailPage() {
           ) : null}
         </Section>
       ) : null}
+
+      <Section title="Dokumentasi">
+        <div className="flex flex-wrap gap-2 p-3">
+          <PhotoThumb color="bg-primary-500" label="Kondisi Rumah 1" />
+          <PhotoThumb color="bg-primary-500" label="Kondisi Rumah 2" />
+          <PhotoThumb color="bg-signal-500" label="Lingkungan" />
+        </div>
+      </Section>
     </AppShell>
   );
 }
@@ -178,6 +186,18 @@ function Row({ label, value, mono }: { label: string; value?: string; mono?: boo
       <dd className={cn('ml-3 truncate text-right font-medium text-ink-900', mono && 'font-mono')}>
         {value}
       </dd>
+    </div>
+  );
+}
+
+function PhotoThumb({ color, label }: { color: string; label: string }) {
+  return (
+    <div
+      className={`flex h-24 w-24 flex-col items-center justify-center gap-1 rounded-md border-2 border-ink-900 ${color}`}
+    >
+      <span className="px-1 text-center text-[10px] font-medium leading-tight text-ink-900">
+        {label}
+      </span>
     </div>
   );
 }
