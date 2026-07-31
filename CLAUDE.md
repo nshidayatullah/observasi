@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-**Current phase:** Fase 3 (Frontend + Mock Data) — Fase 0 is complete, Fase 1 partially complete (T-011, T-012 done). The frontend runs with MSW (Mock Service Worker) providing fake API responses; no real backend is connected yet. See `06_TASK.md` for task-by-task status.
+**Current phase:** Fase 3 (Frontend + Mock Data) ~85% complete. Fase 0 done, Fase 1 partial, Fase 2 wireframes documented. Frontend runs with MSW providing rich mock data; no real backend is connected yet. See `06_TASK.md` for task-by-task status and `07_CHANGELOG.md` for feature list.
 
-**Completed:** Monorepo scaffolding, NestJS skeleton, shared enums/labels/schemas, auth context, login/logout flow, AppShell layout (header + role-aware bottom nav), lazy-loaded routes with role guards, Mess observation form (conditional finding fields), observation history, approval queue page, user list page, profile page, empty/error states.
+**Completed:** 27 of 32 Fase 3 tasks (84%). Full UI with mock data: login + quick login, 3-role beranda with KPI dashboard + charts, Mess & Non-Mess observation forms (multi-step with FormStepper), observation history with filter tabs, detail pages for both types, approval queue grouped per-paramedic per-day with approve-all, doctor approval dialog with medical notes, monthly roster calendar with CRUD modal, Manajemen hub (Master User/Mess/Blok/Lokasi), Laporan tab with monthly recap preview, PhotoUploader with camera capture & compression, Dexie IndexedDB setup, useOnlineStatus hook, ErrorBoundary, Skeleton loading, dark mode with all token variants.
 
-**Not yet built:** Non-Mess form, photo upload, offline sync (Dexie), TanStack Query mutations with cache invalidation on all features, backend modules beyond the NestJS scaffold (no Prisma schema yet).
+**Not yet built:** Non-Mess form photo integration, autosave draft, offline sync queue, batch photo sync, real backend (no Prisma schema, no NestJS modules).
 
 **Product:** Dashboard Observasi Istirahat Karyawan (`observasi-istirahat`) — a mobile-first, offline-capable PWA for recording employee rest observations, replacing a paper/Excel process. Three roles: **Paramedis** (fills observation forms in the field, own-data scope only), **Dokter** (approves/rejects findings with medical notes), **Superadmin** (manages users, master data, schedules).
 
