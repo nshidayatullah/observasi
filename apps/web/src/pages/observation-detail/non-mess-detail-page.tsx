@@ -90,7 +90,10 @@ export default function NonMessDetailPage() {
         <Row label="NRP" value={obs.employeeNrp} mono />
         <Row label="Tanggal Lahir" value={obs.birthDate} />
         <Row label="Status" value={MARITAL_STATUS_LABEL[obs.maritalStatus as MaritalStatus]} />
-        <Row label="Bulan Masuk" value={obs.yearsOfService} />
+        <Row
+          label="Bulan Masuk"
+          value={`${obs.yearsOfService} (${calcDuration(obs.yearsOfService, obs.observationDate)})`}
+        />
         <Row
           label="Jabatan / Dept."
           value={[obs.position, obs.department].filter(Boolean).join(' — ')}
@@ -188,6 +191,22 @@ function Row({ label, value, mono }: { label: string; value?: string; mono?: boo
       </dd>
     </div>
   );
+}
+
+function calcDuration(entryDate: string, obsDate: string): string {
+  if (!entryDate) return '';
+  const [ey, em] = entryDate.split('-').map(Number) as [number, number];
+  const start = new Date(ey!, em! - 1, 1);
+  const end = new Date(obsDate + 'T00:00:00');
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+  if (years > 0 && months > 0) return `${years} thn ${months} bln`;
+  if (years > 0) return `${years} tahun`;
+  return `${months} bulan`;
 }
 
 function PhotoThumb({ color, label }: { color: string; label: string }) {
