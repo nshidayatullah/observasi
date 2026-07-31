@@ -12,6 +12,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@observasi/shared": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.1.1",
@@ -47,5 +48,10 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "msw": "^2.7.0"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

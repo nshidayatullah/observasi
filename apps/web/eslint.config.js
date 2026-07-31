@@ -19,6 +19,12 @@ export default [
         document: "readonly",
         window: "readonly",
         navigator: "readonly",
+        localStorage: "readonly",
+        sessionStorage: "readonly",
+        fetch: "readonly",
+        crypto: "readonly",
+        URL: "readonly",
+        URLSearchParams: "readonly",
       },
     },
     plugins: {
