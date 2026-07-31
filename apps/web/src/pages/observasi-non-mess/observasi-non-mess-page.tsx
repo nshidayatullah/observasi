@@ -191,10 +191,15 @@ function Step1({
           ))}
         </select>
       </F>
-      <F label="Masa Kerja" htmlFor="yearsOfService" required err={errors.yearsOfService?.message}>
+      <F
+        label="Bulan Masuk PPA Site BIB"
+        htmlFor="yearsOfService"
+        required
+        err={errors.yearsOfService?.message}
+      >
         <Input
           id="yearsOfService"
-          placeholder="6 tahun"
+          type="month"
           hasError={!!errors.yearsOfService}
           {...register('yearsOfService')}
         />
